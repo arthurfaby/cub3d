@@ -1,0 +1,4 @@
+cub3d
+*.swp
+*.o
+.nfs*
