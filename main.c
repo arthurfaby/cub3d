@@ -1,5 +1,5 @@
 int	main(int argc, char *argv[])
-{	
-	// mdr
+{
+	// lol	
 	return (0);
 }
