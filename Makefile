@@ -8,25 +8,32 @@ OBJS			= $(SRCS:.c=.o)
 
 INCSDIR			= includes
 
-CC				= clang
-CFLAGS			= -Wall -Werror -Wextra -g -I$(INCSDIR)
-RM				= rm -rf
+MLX				= minilibx
+LIBFT			= libft
+
+CC				= gcc
+CFLAGS			= -Wall -Werror -Wextra -L$(MLX) -lmlx -L$(LIBFT) -lft -lXext -lX11 -lm
+INCS			= -I$(INCSDIR) -I$(LIBFT) -I$(MLX)
+
+RM				= rm -f
 
 .c.o:
-				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) 
+				$(CC) $(INCS) $(CFLAGS) -c $< -o $(<:.c=.o) 
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-#				make -C libft
+				make -C $(MLX)
+				make -C $(LIBFT)
 				$(CC) $(OBJS) -o $@ $(CFLAGS)
 
 clean:
-#				make clean -C libft
+				make clean -C $(MLX)
+				make clean -C $(LIBFT)
 				$(RM) $(OBJS)
 
 fclean:			clean
-#				make fclean -C libft
+				make fclean -C $(LIBFT)
 				$(RM) $(NAME)
 
 re:				fclean all
