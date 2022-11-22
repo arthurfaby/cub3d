@@ -8,7 +8,6 @@
 # include "mlx_int.h"
 # include <math.h>
 
-# define MMAP_RATIO 80.0
 # define MMAP_FCOLOR 0xe6e603
 # define MMAP_WCOLOR 0x101040
 # define MMAP_PCOLOR 0x582900
@@ -50,18 +49,26 @@ typedef struct s_map
 	int			width;
 	int			height;
 	double		mmap_width;
+	double		mmap_ratio;
 	t_player	player;
 }	t_map;
 
 typedef struct s_texture
 {
-	void	*north;
-	void	*south;
-	void	*west;
-	void	*east;
-	int		floor;
-	int		ceiling;
+	void	*texture;
+	int		width;
+	int		height;
 }	t_texture;
+
+typedef struct s_textures
+{
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+	int			floor;
+	int			ceiling;
+}	t_textures;
 
 typedef struct s_game
 {
