@@ -7,7 +7,7 @@ SRCS			= \
 				srcs/game.c \
 				srcs/drawing.c \
 				srcs/hook.c \
-				srcs/mouse_hook.c \
+				srcs/interaction.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

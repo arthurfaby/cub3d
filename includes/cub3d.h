@@ -8,9 +8,12 @@
 # include "mlx_int.h"
 # include <math.h>
 
+# define MMAP_WIDTH 9.0
+# define MMAP_RATIO 6.0
 # define MMAP_FCOLOR 0xe6e603
 # define MMAP_WCOLOR 0x101040
 # define MMAP_PCOLOR 0x582900
+# define MMAP_DCOLOR 0x017000
 # define PI 3.1415926535
 
 typedef struct s_point
@@ -48,8 +51,6 @@ typedef struct s_map
 	int			board[10][13];
 	int			width;
 	int			height;
-	double		mmap_width;
-	double		mmap_ratio;
 	t_player	player;
 }	t_map;
 
@@ -94,5 +95,8 @@ int		key_hook(int keycode, t_game *game);
 
 // mouse_hook.c
 int		mouse_hook(int button, int x, int y, t_game *game);
+
+// interaction.c
+void	open_door(t_window *window, t_map *map);
 
 #endif
