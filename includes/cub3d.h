@@ -15,7 +15,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int			**map;
+	int			**board;
 	int			width;
 	int			height;
 	t_player	player;
@@ -30,5 +30,11 @@ typedef struct s_texture
 	int		floor;
 	int		ceiling;
 }	t_texture;
+
+// error.c
+int	error(const char *map);
+
+// check_error_element.c
+int	check_error_element(int fd);
 
 #endif

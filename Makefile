@@ -1,7 +1,9 @@
 NAME			= cub3d
 
 SRCS			= \
-				main.c
+				main.c \
+				error.c \
+				check_error_element.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)
@@ -12,7 +14,7 @@ MLX				= minilibx
 LIBFT			= libft
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -L$(MLX) -lmlx -L$(LIBFT) -lft -lXext -lX11 -lm
+CFLAGS			= -Wall -Werror -Wextra -L$(MLX) -lmlx -L$(LIBFT) -lft -lXext -lX11 -lm -g
 INCS			= -I$(INCSDIR) -I$(LIBFT) -I$(MLX)
 
 RM				= rm -f
