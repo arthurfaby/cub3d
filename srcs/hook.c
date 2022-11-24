@@ -4,8 +4,8 @@ static void	move_up(t_map *map)
 {
 	t_point	next_pos;
 
-	next_pos.x = map->player.pos.x + cos(map->player.angle) * 0.15;
-	next_pos.y = map->player.pos.y + sin(map->player.angle) * 0.15;
+	next_pos.x = map->player.pos.x + cos(map->player.angle) * 0.1;
+	next_pos.y = map->player.pos.y + sin(map->player.angle) * 0.1;
 	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
 		return ;
 	map->player.pos.x = next_pos.x;
@@ -16,8 +16,8 @@ static void	move_down(t_map *map)
 {
 	t_point	next_pos;
 
-	next_pos.x = map->player.pos.x - cos(map->player.angle) * 0.15;
-	next_pos.y = map->player.pos.y - sin(map->player.angle) * 0.15;
+	next_pos.x = map->player.pos.x - cos(map->player.angle) * 0.1;
+	next_pos.y = map->player.pos.y - sin(map->player.angle) * 0.1;
 	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
 		return ;
 	map->player.pos.x = next_pos.x;
@@ -28,8 +28,8 @@ static void	move_left(t_map *map)
 {
 	t_point	next_pos;
 
-	next_pos.x = map->player.pos.x + sin(map->player.angle) * 0.15;
-	next_pos.y = map->player.pos.y - cos(map->player.angle) * 0.15;
+	next_pos.x = map->player.pos.x + sin(map->player.angle) * 0.1;
+	next_pos.y = map->player.pos.y - cos(map->player.angle) * 0.1;
 	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
 		return ;
 	map->player.pos.x = next_pos.x;
@@ -40,8 +40,8 @@ static void	move_right(t_map *map)
 {
 	t_point	next_pos;
 
-	next_pos.x = map->player.pos.x - sin(map->player.angle) * 0.15;
-	next_pos.y = map->player.pos.y + cos(map->player.angle) * 0.15;
+	next_pos.x = map->player.pos.x - sin(map->player.angle) * 0.1;
+	next_pos.y = map->player.pos.y + cos(map->player.angle) * 0.1;
 	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
 		return ;
 	map->player.pos.x = next_pos.x;

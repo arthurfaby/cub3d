@@ -15,6 +15,8 @@
 # define MMAP_PCOLOR 0x582900
 # define MMAP_DCOLOR 0x017000
 # define PI 3.1415926535
+# define RES_WIDTH 1920
+# define RES_HEIGHT 1080
 
 typedef struct s_point
 {
@@ -44,6 +46,7 @@ typedef struct s_player
 {
 	t_point	pos;
 	double	angle;
+	int		last_x;
 }	t_player;
 
 typedef struct s_map
@@ -93,10 +96,8 @@ void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 // hook.c
 int		key_hook(int keycode, t_game *game);
 
-// mouse_hook.c
-int		mouse_hook(int button, int x, int y, t_game *game);
-
 // interaction.c
 void	open_door(t_window *window, t_map *map);
+int		mouse_move(int x, int y, t_game *game);
 
 #endif

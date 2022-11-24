@@ -3,8 +3,8 @@
 void	init_window(t_window *window)
 {
 	window->mlx = mlx_init();
-	window->height = 1080;
-	window->width = 1920;
+	window->height = RES_HEIGHT;
+	window->width = RES_WIDTH;
 	window->win = mlx_new_window(
 		window->mlx,
 		window->width,
