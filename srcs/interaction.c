@@ -13,17 +13,9 @@ int	mouse_move(int x, int y, t_game *game)
 	}
 	clock = 0;
 	if (x > game->map.player.last_x + 10)
-	{
-		game->map.player.angle += (PI / 32);
-		if (game->map.player.angle > 2 * PI)
-			game->map.player.angle -= 2 * PI;
-	}
+		change_angle(&game->map.player, PI / 32);
 	if (x < game->map.player.last_x - 10)
-	{
-		game->map.player.angle -= (PI / 32);
-		if (game->map.player.angle < 0)
-			game->map.player.angle += 2 * PI;
-	}
+		change_angle(&game->map.player, -PI / 32);
 	if (x < 50 || x > RES_WIDTH - 50)
 		mlx_mouse_move(game->window.mlx, game->window.win, RES_WIDTH / 2, y);
 	if (y < 200 || y > RES_HEIGHT - 200)
@@ -35,13 +27,12 @@ int	mouse_move(int x, int y, t_game *game)
 		game->map.player.last_x = new_x;
 	}
 	return (0);
-} 
+}
 
-void	open_door(t_window *window, t_map *map)
+void	open_door(t_map *map)
 {
 	t_point		pointing;
 	t_player	player;
-	(void)window;
 
 	player = map->player;
 	pointing.x = player.pos.x;

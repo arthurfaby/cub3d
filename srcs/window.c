@@ -6,13 +6,16 @@ void	init_window(t_window *window)
 	window->height = RES_HEIGHT;
 	window->width = RES_WIDTH;
 	window->win = mlx_new_window(
-		window->mlx,
-		window->width,
-		window->height,
-		"cub3d"
-		);
-	window->image = malloc(sizeof(t_image)); 
+			window->mlx,
+			window->width,
+			window->height,
+			"cub3d"
+			);
+	window->image = malloc(sizeof(t_image));
 	// check malloc
-	window->image->img = mlx_new_image(window->mlx, window->width, window->height);
-	window->image->addr = mlx_get_data_addr(window->image->img, &window->image->bpp, &window->image->line_len, &window->image->endian);
+	window->image->img = mlx_new_image(window->mlx,
+			window->width, window->height);
+	window->image->addr = mlx_get_data_addr(window->image->img,
+			&window->image->bpp, &window->image->line_len,
+			&window->image->endian);
 }

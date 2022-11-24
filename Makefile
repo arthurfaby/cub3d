@@ -8,6 +8,7 @@ SRCS			= \
 				srcs/drawing.c \
 				srcs/hook.c \
 				srcs/interaction.c \
+				srcs/utils.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

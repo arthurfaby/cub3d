@@ -61,19 +61,11 @@ int	key_hook(int keycode, t_game *game)
 	if (keycode == 's')
 		move_down(&game->map);
 	if (keycode == 'e')
-		open_door(&game->window, &game->map);
+		open_door(&game->map);
 	if (keycode == XK_Left)
-	{
-		game->map.player.angle -= (PI / 64);
-		if (game->map.player.angle < 0)
-			game->map.player.angle += 2 * PI;
-	}
-	if (keycode == XK_Right) 
-	{
-		game->map.player.angle += (PI / 64);
-		if (game->map.player.angle > 2 * PI)
-			game->map.player.angle -= 2 *PI;
-	}
+		change_angle(&game->map.player, -PI / 64);
+	if (keycode == XK_Right)
+		change_angle(&game->map.player, +PI / 64);
 	draw_minimap(&game->window, &game->map);
 	return (0);
 }

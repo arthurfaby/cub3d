@@ -9,23 +9,24 @@ static void	draw_player(t_window *window, t_map *map, int tile_border)
 
 	center.x = (double)((double)MMAP_WIDTH / 2 * tile_border);
 	center.y = center.x;
-	end.x =  20 * sin(map->player.angle) + center.x;
+	end.x = 20 * sin(map->player.angle) + center.x;
 	end.y = 20 * cos(map->player.angle) + center.y;
 	draw_line(window, &center, &end, 0);
 	i = -3;
 	while (i < 4)
 	{
-        j = -3;	
-        while (j < 4)
-        {
-                img_pixel_put(window, center.y + j, center.x + i, MMAP_PCOLOR);
-                j++;
-        }
-        i++;
+		j = -3;
+		while (j < 4)
+		{
+			img_pixel_put(window, center.y + j, center.x + i, MMAP_PCOLOR);
+			j++;
+		}
+		i++;
 	}
 }
 
-static int	is_in_circle(t_window *window, t_point here, int x_offset, int y_offset)
+static int	is_in_circle(t_window *window, t_point here,
+						int x_offset, int y_offset)
 {
 	int		tile_border;
 	t_point	center;
@@ -36,7 +37,8 @@ static int	is_in_circle(t_window *window, t_point here, int x_offset, int y_offs
 	center.x = (int)(MMAP_WIDTH * tile_border / 2);
 	center.y = (int)(MMAP_WIDTH * tile_border / 2);
 	radius = center.x - 5;
-	distance = sqrt(pow(center.x - here.x + x_offset, 2) + pow(center.y - here.y + y_offset, 2));
+	distance = sqrt(pow(center.x - here.x + x_offset, 2)
+			+ pow(center.y - here.y + y_offset, 2));
 	if (distance < radius)
 		return (1);
 	else if (distance == radius)
@@ -58,7 +60,7 @@ static int	check_in_map(t_map *map, t_point here, int tile_border)
 	return (x_neg || x_out || y_neg || y_out);
 }
 
-static int  get_tile_type(t_map *map, t_point here, int tile_border)
+static int	get_tile_type(t_map *map, t_point here, int tile_border)
 {
 	int	res;
 
@@ -77,23 +79,31 @@ void	draw_minimap(t_window *window, t_map *map)
 
 	tile_border = window->width / MMAP_RATIO / MMAP_WIDTH;
 	here.x = (map->player.pos.x - (double)(MMAP_WIDTH / 2)) * tile_border;
-	x_offset = (int)((map->player.pos.x - (double)(MMAP_WIDTH / 2)) * tile_border);
-	y_offset = (int)((map->player.pos.y - (double)(MMAP_WIDTH / 2)) * tile_border);
-	while (here.x < ((map->player.pos.x + (double)(MMAP_WIDTH / 2)) * tile_border))
+	x_offset = (int)((map->player.pos.x - (double)(MMAP_WIDTH / 2))
+			* tile_border);
+	y_offset = (int)((map->player.pos.y - (double)(MMAP_WIDTH / 2))
+			* tile_border);
+	while (here.x < ((map->player.pos.x + (double)(MMAP_WIDTH / 2))
+		* tile_border))
 	{
 		here.y = (map->player.pos.y - (double)(MMAP_WIDTH / 2)) * tile_border;
-		while (here.y < ((map->player.pos.y + (double)(MMAP_WIDTH / 2)) * tile_border))
+		while (here.y < ((map->player.pos.y + (double)(MMAP_WIDTH / 2))
+			* tile_border))
 		{
 			if (is_in_circle(window, here, x_offset, y_offset))
 			{
 				if (is_in_circle(window, here, x_offset, y_offset) == 2)
-					img_pixel_put(window, (int)here.y - y_offset, (int)here.x - x_offset, MMAP_WCOLOR);
+					img_pixel_put(window, (int)here.y - y_offset,
+						(int)here.x - x_offset, MMAP_WCOLOR);
 				else if (get_tile_type(map, here, tile_border) == 2)
-					img_pixel_put(window, (int)here.y - y_offset, (int)here.x - x_offset, MMAP_DCOLOR);
+					img_pixel_put(window, (int)here.y - y_offset,
+						(int)here.x - x_offset, MMAP_DCOLOR);
 				else if (get_tile_type(map, here, tile_border) == 0)
-					img_pixel_put(window, (int)here.y - y_offset, (int)here.x - x_offset, MMAP_FCOLOR);
+					img_pixel_put(window, (int)here.y - y_offset,
+						(int)here.x - x_offset, MMAP_FCOLOR);
 				else
-					img_pixel_put(window, (int)here.y - y_offset, (int)here.x - x_offset, MMAP_WCOLOR);
+					img_pixel_put(window, (int)here.y - y_offset,
+						(int)here.x - x_offset, MMAP_WCOLOR);
 			}
 			here.y++;
 		}

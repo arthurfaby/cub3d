@@ -97,7 +97,10 @@ void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 int		key_hook(int keycode, t_game *game);
 
 // interaction.c
-void	open_door(t_window *window, t_map *map);
+void	open_door(t_map *map);
 int		mouse_move(int x, int y, t_game *game);
+
+// utils.c
+void	change_angle(t_player *player, double speed);
 
 #endif

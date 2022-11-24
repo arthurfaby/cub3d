@@ -5,13 +5,13 @@ void	img_pixel_put(t_window *window, int y, int x, int color)
 	char	*pixel;
 	int		i;
 
-
 	if (y >= window->height || y < 0)
 		return ;
 	if (x >= window->width || x < 0)
-		return ;	
+		return ;
 	i = window->image->bpp - 8;
-	pixel = window->image->addr + (y * window->image->line_len) + x * (window->image->bpp / 8);
+	pixel = window->image->addr + (y * window->image->line_len)
+		+ x * (window->image->bpp / 8);
 	while (i >= 0)
 	{
 		if (window->image->endian)
