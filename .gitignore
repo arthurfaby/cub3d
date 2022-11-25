@@ -2,3 +2,5 @@ cub3d
 *.swp
 *.o
 .nfs*
+*.a
+mlx-test
