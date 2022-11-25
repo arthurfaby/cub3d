@@ -1,7 +1,14 @@
 NAME			= cub3d
 
 SRCS			= \
-				main.c
+				main.c \
+				srcs/minimap.c \
+				srcs/window.c \
+				srcs/game.c \
+				srcs/drawing.c \
+				srcs/hook.c \
+				srcs/interaction.c \
+				srcs/utils.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)
@@ -12,7 +19,7 @@ MLX				= minilibx
 LIBFT			= libft
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -L$(MLX) -lmlx -L$(LIBFT) -lft -lXext -lX11 -lm
+CFLAGS			= -Wall -Werror -Wextra -L$(MLX) -lmlx -L$(LIBFT) -lft -lXext -lX11 -lm -g
 INCS			= -I$(INCSDIR) -I$(LIBFT) -I$(MLX)
 
 RM				= rm -f

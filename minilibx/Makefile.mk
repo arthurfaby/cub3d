@@ -14,9 +14,9 @@
 INC	=%%%%
 
 UNAME = $(shell uname)
-CC	= gcc
+CC	= gcc -g
 ifeq ($(UNAME),FreeBSD)
-	CC = clang
+	CC = clang -g
 endif
 
 NAME		= libmlx.a
