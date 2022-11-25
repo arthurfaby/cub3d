@@ -4,6 +4,7 @@ SRCS			= \
 				main.c \
 				error.c \
 				check_error_element.c \
+				check_texture.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

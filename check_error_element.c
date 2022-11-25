@@ -19,19 +19,7 @@ static int	value_elements(char *str)
 		return (-1);
 }
 
-static int	check_value_elements(char *element)
-{
-	int	fd;
-
-	element[ft_strlen(element)] = 0;
-	fd = open(element, O_RDONLY);
-	if (fd == -1)
-		return (1);
-	close (fd);
-	return (0);
-}
-
-static int check_value_color(char *color)
+/*static int check_value_color(char *color)
 {
 	char	**split_color;
 	int		simple_color;
@@ -55,7 +43,7 @@ static int check_value_color(char *color)
 	}
 	free_arr(split_color);
 	return (0);
-}
+}*/
 
 static int	check_line_element(char *line)
 {
@@ -70,16 +58,14 @@ static int	check_line_element(char *line)
 		return (value);
 	}
 	value = value_elements(split_line[0]);
+	split_line[1][ft_strlen(split_line[1]) - 1] = 0;
 	if (ft_strlen(split_line[0]) == 2)
-	{
-		if (check_value_elements(split_line[1]) == 1)
-			value = -1;
-	}
-	else if (ft_strlen(split_line[0]) == 1)
+		value = check_value_texture(split_line);
+	/*else if (ft_strlen(split_line[0]) == 1)
 	{
 		if (value == -1 && check_value_color(split_line[1]) == 1)
 			value = -1;
-	}
+	}*/
 	free_arr(split_line);
 	return (value);
 }
@@ -103,12 +89,13 @@ int	check_error_element(int fd)
 		if (check == -1 || elements[check] == 1)
 		{
 			free(line);
-			ft_print_error("Error\nBad elements\n");
+			//ft_print_error("Error\nBad color or textures\n");
 			return (1);
 		}
 		else
 			elements[check] = 1;
 		++nb_elements;
+		free(line);
 		line = get_next_line(fd, 1);
 	}
 	return (0);
