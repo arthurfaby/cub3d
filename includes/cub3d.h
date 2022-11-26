@@ -78,6 +78,7 @@ typedef struct s_game
 {
 	t_map		map;
 	t_window	window;
+	t_textures	textures;
 }	t_game;
 
 //check_texture.c

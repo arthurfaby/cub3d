@@ -20,15 +20,18 @@ static int	check_extension(const char *map)
 	return (0);	
 }
 
-static int	error_parsing_fd(int fd)
+static int	error_parsing_fd(t_textures *textures, const char *map, int fd)
 {
+	int	ret;
+
+	ret = 0;
 	if (check_error_element(fd) == 1)
 		return (1);
-	// check map
-	return (0);
+	ret = parse_elements_and_check_map(map);
+	return (ret);
 }
 
-int error(const char *map)
+int error(t_textures *textures, const char *map)
 {
 	int	fd;
 
@@ -45,6 +48,8 @@ int error(const char *map)
 		close(fd);
 		return (1);
 	}
+	if (error_parsing_fd(map) == 2)
+		return (2);
 	close (fd);
 	return (0);
 }
