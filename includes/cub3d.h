@@ -17,6 +17,8 @@
 # define MMAP_DCOLOR 0x017000
 # define PI 3.1415926535
 
+# define ERROR "[\e[31mERROR\e[0m]"
+
 typedef struct s_point
 {
 	double	x;
@@ -103,7 +105,7 @@ void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 // hook.c
 int		key_hook(int keycode, t_game *game);
 
-// mouse_hook.c
-int		mouse_hook(int button, int x, int y, t_game *game);
+// check_color.c
+int	check_value_color(char **split_line);
 
 #endif

@@ -17,12 +17,13 @@ static int	check_texture(char	*image, int width, int height, char	**element)
 {
 	if (image == NULL)
 	{
-		ft_print_error("%s : %s path image failed\n",element[0], element[1]);
+		ft_print_error(ERROR": %s is not a valid path for [%s]\n",
+			element[1], element[0]);
 		return (1);
 	}
 	else if (width != height)
 	{
-		ft_print_error("%s : not square\n", element[0]);
+		ft_print_error(ERROR": image of [%s] is not a square\n", element[0]);
 		return (1);
 	}
 	return (0);

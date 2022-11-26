@@ -2,9 +2,10 @@ NAME			= cub3d
 
 SRCS			= \
 				main.c \
-				error.c \
-				check_error_element.c \
-				check_texture.c \
+				srcs/error.c \
+				srcs/check_error_element.c \
+				srcs/check_texture.c \
+				srcs/check_color.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

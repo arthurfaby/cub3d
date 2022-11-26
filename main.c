@@ -7,8 +7,7 @@ int	main(int argc, char *argv[])
 	
 	if (argc != 2)
 	{
-		ft_print_error("Error\n");
-		ft_print_error("not the right number of arguments\n");
+		ft_print_error(ERROR": format must be [%s <map.cub>]\n", argv[0]);
 		return (0);
 	}
 	if (error(argv[1]) == 1)
