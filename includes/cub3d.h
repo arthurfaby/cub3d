@@ -109,4 +109,8 @@ int		key_hook(int keycode, t_game *game);
 // check_color.c
 int	check_value_color(char **split_line);
 
+// check_map.c
+int	check_map(const char *map);
+
+
 #endif

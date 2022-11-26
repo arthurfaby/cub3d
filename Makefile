@@ -6,6 +6,7 @@ SRCS			= \
 				srcs/check_error_element.c \
 				srcs/check_texture.c \
 				srcs/check_color.c \
+				srcs/check_map.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

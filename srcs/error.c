@@ -20,18 +20,16 @@ static int	check_extension(const char *map)
 	return (0);	
 }
 
-static int	error_parsing_fd(t_textures *textures, const char *map, int fd)
+static int	error_parsing_fd(const char *map, int fd)
 {
-	int	ret;
-
-	ret = 0;
 	if (check_error_element(fd) == 1)
 		return (1);
-	ret = parse_elements_and_check_map(map);
-	return (ret);
+	if (check_map(map))
+		return (1);
+	return (0);
 }
 
-int error(t_textures *textures, const char *map)
+int error(const char *map)
 {
 	int	fd;
 
@@ -43,13 +41,11 @@ int error(t_textures *textures, const char *map)
 		ft_print_error(ERROR" : open map failed.\n");
 		return (1);
 	}
-	if (error_parsing_fd(fd) == 1)
+	if (error_parsing_fd(map, fd) == 1)
 	{
 		close(fd);
 		return (1);
 	}
-	if (error_parsing_fd(map) == 2)
-		return (2);
 	close (fd);
 	return (0);
 }
