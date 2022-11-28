@@ -2,7 +2,6 @@
 
 int	main(int argc, char *argv[])
 {
-<<<<<<< HEAD
 	//t_map		map;
 	//t_texture	texture;
 	
@@ -13,12 +12,8 @@ int	main(int argc, char *argv[])
 	}
 	if (error(argv[1]) == 1)
 		return (0);
-=======
-	(void) argc;
-
 	printf("Welcome to cub3d :)\n");
 	launch_game(argv);
->>>>>>> 45066660a60858ffaea68b3d706a8994a34ec3bf
 	//cub3d here and its done
 	return (0);
 }
