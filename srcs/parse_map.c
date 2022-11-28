@@ -30,8 +30,8 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		return (1);
 	if (c == '0')
 		return (0);
-	map->player.pos.x = i + 0.5;
-	map->player.pos.y = j + 0.5;
+	map->player.pos.x = j + 0.5;
+	map->player.pos.y = i + 0.5;
 	if (c == 'N')
 		map->player.angle = 3.0 * PI / 2.0;
 	if (c == 'S')
@@ -40,6 +40,7 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		map->player.angle = PI;
 	if (c == 'E')
 		map->player.angle = 0;
+	printf("%f %f %f\n", map->player.pos.x, map->player.pos.y, map->player.angle);
 	return (0);
 }
 
@@ -57,20 +58,20 @@ static void	fill_board(int fd, t_map *map, int **board)
 		free(line);
 		line = get_next_line(fd, 1);
 	}
-	while (line && ft_strcmp(line, "\n") == 0)
+	while (line && ft_strcmp(line, "\n") != 0)
 	{
 		j = -1;
 		line_len = ft_strlen(line);
 		while (++j < map->width)
 		{
-			if (j > line_len)
+			if (j > line_len - 2)
 				board[i][j] = 1;
 			else
 				board[i][j] = convert_tile_and_check_player(map, line[j], i, j);
 		}
 		i++;
 		free(line);
-		get_next_line(fd, 1);
+		line = get_next_line(fd, 1);
 	}
 }
 
