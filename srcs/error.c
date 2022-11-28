@@ -20,28 +20,28 @@ static int	check_extension(const char *map)
 	return (0);	
 }
 
-static int	error_parsing_fd(int fd)
+static int	error_parsing_fd(int fd, t_map *map)
 {
 	if (check_error_element(fd) == 1)
 		return (1);
-	if (check_map(fd))
+	if (check_map(fd, map))
 		return (1);
 	return (0);
 }
 
-int error(const char *map)
+int error(const char *path, t_map *map)
 {
 	int	fd;
 
-	if (check_extension(map) == 1)
+	if (check_extension(path) == 1)
 		return (1);
-	fd = open(map, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_print_error(ERROR" : open map failed.\n");
 		return (1);
 	}
-	if (error_parsing_fd(fd) == 1)
+	if (error_parsing_fd(fd, map) == 1)
 	{
 		close(fd);
 		return (1);

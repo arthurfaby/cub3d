@@ -9,7 +9,7 @@ static int	check_valid_char(char c)
 	return (0);
 }
 
-int	check_map(int fd)
+int	check_map(int fd, t_map *map)
 {
 	int		map_width;
 	int		map_height;
@@ -50,8 +50,8 @@ int	check_map(int fd)
 		ft_print_error(ERROR" : empty line inside or after map.\n");
 		return (1);
 	}
-	printf("width : %d\nheight : %d\n", map_width, map_height);
-	if (line)
-		free(line);
+	free(line);
+	map->width = map_width;
+	map->height = map_height;
 	return (0);
 }

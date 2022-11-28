@@ -2,6 +2,9 @@ NAME			= cub3d
 
 SRCS			= \
 				main.c \
+				srcs/parsing.c \
+				srcs/parse_elements.c \
+				srcs/parse_map.c \
 				srcs/error.c \
 				srcs/check_error_element.c \
 				srcs/check_texture.c \

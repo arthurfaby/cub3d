@@ -53,7 +53,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int			board[10][13];
+	int			**board;
 	int			width;
 	int			height;
 	t_player	player;
@@ -84,10 +84,10 @@ typedef struct s_game
 }	t_game;
 
 //check_texture.c
-int	check_value_texture(char **element);
+int		check_value_texture(char **element);
 
 //error.c
-int		error(const char *map);
+int		error(const char *path, t_map *map);
 
 //check_error_element.c
 int		check_error_element(int fd);
@@ -96,7 +96,7 @@ int		check_error_element(int fd);
 void	draw_minimap(t_window *window, t_map *map);
 
 // game.c
-void	launch_game(char *argv[]);
+int		launch_game(char *argv[]);
 
 // window.c
 void	init_window(t_window *window);
@@ -112,7 +112,7 @@ int		key_hook(int keycode, t_game *game);
 int		check_value_color(char **split_line);
 
 // check_map.c
-int		check_map(int fd);
+int		check_map(int fd, t_map *map);
 
 // interaction.c
 void	open_door(t_map *map);
@@ -120,5 +120,14 @@ int		mouse_move(int x, int y, t_game *game);
 
 // utils.c
 void	change_angle(t_player *player, double speed);
+
+// parsing.c
+int		parse_all(const char *path, t_game *game);
+
+// parse_elements.c
+int		parse_elements(int fd, t_game *game);
+
+// parse_map.c
+int		parse_map(int fd, t_game *game);
 
 #endif
