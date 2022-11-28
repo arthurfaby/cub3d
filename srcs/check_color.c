@@ -28,7 +28,7 @@ int	check_value_color(char **split_line)
 	while (split_color[i] != NULL)
 	{
 		simple_color = ft_atoi(split_color[i]);
-		if (simple_color > 255 || simple_color < 0)
+		if (ft_strlen(split_color[i]) > 3 || simple_color > 255 || simple_color < 0)
 		{
 			ft_printf(ERROR": color (%d) out of range for [%s].\n", simple_color, split_line[0]);
 			free_arr(split_color);

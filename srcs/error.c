@@ -20,11 +20,11 @@ static int	check_extension(const char *map)
 	return (0);	
 }
 
-static int	error_parsing_fd(const char *map, int fd)
+static int	error_parsing_fd(int fd)
 {
 	if (check_error_element(fd) == 1)
 		return (1);
-	if (check_map(map))
+	if (check_map(fd))
 		return (1);
 	return (0);
 }
@@ -41,7 +41,7 @@ int error(const char *map)
 		ft_print_error(ERROR" : open map failed.\n");
 		return (1);
 	}
-	if (error_parsing_fd(map, fd) == 1)
+	if (error_parsing_fd(fd) == 1)
 	{
 		close(fd);
 		return (1);

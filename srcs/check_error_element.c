@@ -26,7 +26,7 @@ static int	check_line_element(char *line)
 	split_line = ft_split(line, ' ');
 	if (size_arr(split_line) != 2)
 	{
-		ft_printf(ERROR": too much arguments for [%s].\n", split_line[0]);
+		ft_printf(ERROR": not two arguments for [%s].\n", split_line[0]);
 		free_arr(split_line);
 		return (value);
 	}
@@ -61,15 +61,14 @@ int	check_error_element(int fd)
 		check = -1;
 		if (ft_strcmp(line, "\n") != 0)
 			check = check_line_element(line);
-		if (check == -1 || elements[check] == 1)
+		if (ft_strcmp(line, "\n") != 0 && (check == -1 || elements[check] == 1))
 		{
 			if (check != -1 && elements[check] == 1)
-				ft_printf(ERROR": double declartion somewhere.\n"); // put where
+				ft_printf(ERROR": double declaration somewhere.\n"); // put where
 			free(line);
-			//ft_print_error("Error\nBad color or textures\n");
 			return (1);
 		}
-		else
+		else if (ft_strcmp(line, "\n") != 0)
 		{
 			elements[check] = 1;
 			++nb_elements;

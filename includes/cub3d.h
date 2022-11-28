@@ -107,10 +107,10 @@ void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 int		key_hook(int keycode, t_game *game);
 
 // check_color.c
-int	check_value_color(char **split_line);
+int		check_value_color(char **split_line);
 
 // check_map.c
-int	check_map(const char *map);
+int		check_map(int fd);
 
 
 #endif
