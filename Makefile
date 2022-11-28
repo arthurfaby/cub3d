@@ -7,6 +7,13 @@ SRCS			= \
 				srcs/check_texture.c \
 				srcs/check_color.c \
 				srcs/check_map.c \
+				srcs/minimap.c \
+				srcs/window.c \
+				srcs/game.c \
+				srcs/drawing.c \
+				srcs/hook.c \
+				srcs/interaction.c \
+				srcs/utils.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

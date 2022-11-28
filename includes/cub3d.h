@@ -8,7 +8,6 @@
 # include "mlx_int.h"
 # include <math.h>
 
-
 # define MMAP_WIDTH 9.0
 # define MMAP_RATIO 6.0
 # define MMAP_FCOLOR 0xe6e603
@@ -16,6 +15,8 @@
 # define MMAP_PCOLOR 0x582900
 # define MMAP_DCOLOR 0x017000
 # define PI 3.1415926535
+# define RES_WIDTH 1920
+# define RES_HEIGHT 1080
 
 # define ERROR "[\e[31mERROR\e[0m]"
 
@@ -47,6 +48,7 @@ typedef struct s_player
 {
 	t_point	pos;
 	double	angle;
+	int		last_x;
 }	t_player;
 
 typedef struct s_map
@@ -112,5 +114,11 @@ int		check_value_color(char **split_line);
 // check_map.c
 int		check_map(int fd);
 
+// interaction.c
+void	open_door(t_map *map);
+int		mouse_move(int x, int y, t_game *game);
+
+// utils.c
+void	change_angle(t_player *player, double speed);
 
 #endif
