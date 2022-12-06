@@ -67,6 +67,8 @@ static int	get_tile_type(t_map *map, t_point here, int tile_border)
 	if (check_in_map(map, here, tile_border))
 		return (-1);
 	res = map->board[(int)(here.y / tile_border)][(int)(here.x / tile_border)];
+	if (res == 3)
+		return (0);
 	return (res);
 }
 
