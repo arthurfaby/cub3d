@@ -9,7 +9,7 @@ void	launch_game(char *argv[])
 		game.map.width = 13;
 		game.map.height = 10;
 		game.map.board[0][0] = 1; // 1111111111111
-		game.map.board[0][1] = 1; // 1010000111111
+		game.map.board[0][1] = 1; // 1000000111111
 		game.map.board[0][2] = 1; // 1000000000001
 		game.map.board[0][3] = 1; // 1001011111101 
 		game.map.board[0][4] = 1; // 1001110000101
@@ -37,7 +37,7 @@ void	launch_game(char *argv[])
 		game.map.board[1][12] = 1;
 		game.map.board[2][0] = 1;
 		game.map.board[2][1] = 0;
-		game.map.board[2][2] = 0;
+		game.map.board[2][2] = 1;
 		game.map.board[2][3] = 0;
 		game.map.board[2][4] = 0;
 		game.map.board[2][5] = 0;
@@ -50,7 +50,7 @@ void	launch_game(char *argv[])
 		game.map.board[2][12] = 1;
 		game.map.board[3][0] = 1;
 		game.map.board[3][1] = 0;
-		game.map.board[3][2] = 0;
+		game.map.board[3][2] = 1;
 		game.map.board[3][3] = 1;
 		game.map.board[3][4] = 0;
 		game.map.board[3][5] = 1;
@@ -141,16 +141,16 @@ void	launch_game(char *argv[])
 		game.map.board[9][12] = 1;
 		game.map.player.pos.x = 1.5;
 		game.map.player.pos.y = 1.5;
-		game.map.player.angle = 0.0;
+		game.map.player.angle = 1.5708;
 		game.map.player.last_x = RES_WIDTH / 2;
 	}
 	init_window(&game.window);
 	draw_minimap(&game.window, &game.map);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
-	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
-		mouse_move, &game);
-	mlx_mouse_move(game.window.mlx, game.window.win,
-		RES_WIDTH / 2, RES_HEIGHT / 2);
-	mlx_mouse_hide(game.window.mlx, game.window.win);
+//	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
+//		mouse_move, &game);
+	//mlx_mouse_move(game.window.mlx, game.window.win,
+	//	RES_WIDTH / 2, RES_HEIGHT / 2);
+	//mlx_mouse_hide(game.window.mlx, game.window.win);
 	mlx_loop(game.window.mlx);
 }

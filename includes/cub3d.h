@@ -17,12 +17,27 @@
 # define PI 3.1415926535
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
+# define FOV PI/3.0 
 
 typedef struct s_point
 {
 	double	x;
 	double	y;
 }	t_point;
+
+typedef struct s_wall
+{
+	double	x;
+	double	y;
+}	t_wall;
+
+/*typedef struct s_camera
+{
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
+}	t_camera;*/
 
 typedef struct s_image
 {
@@ -79,6 +94,12 @@ typedef struct s_game
 	t_map		map;
 	t_window	window;
 }	t_game;
+
+//print_wall.c
+void	print_wall(t_wall next_wall, int find_wall_y, int find_wall_x, t_map *map, double ray, int i, t_window *window);
+
+//raycasting.c
+void	raycasting(t_map *map, t_window *window);
 
 // minimap.c
 void	draw_minimap(t_window *window, t_map *map);
