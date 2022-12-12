@@ -16,7 +16,7 @@ static double	wall_vert_no(t_wall *next_wall, t_map *map, double ray)
 		{
 
 			distance = sqrt(pow((map->player.pos.x * 64) - (next_wall->x), 2) + pow((map->player.pos.y * 64) - (next_wall->y), 2));
-			distance *= cos(ray);
+			//distance *= cos(ray);
 			if (distance < 0)
 				distance = -distance;
 			return (distance);
@@ -42,7 +42,7 @@ static double	wall_hori_no(t_wall *next_wall, t_map *map, double ray)
 		if (next_wall->x > 0 && next_wall->y > 0 && map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 1)
 		{
 			distance = sqrt(pow((map->player.pos.x * 64) - (next_wall->x), 2) + pow((map->player.pos.y * 64) - (next_wall->y), 2));
-			distance *= cos(ray);
+		//	distance *= cos(ray);
 			if (distance < 0)
 				distance = -distance;
 			return (distance);

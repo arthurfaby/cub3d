@@ -139,8 +139,8 @@ void	launch_game(char *argv[])
 		game.map.board[9][10] = 1;
 		game.map.board[9][11] = 1;
 		game.map.board[9][12] = 1;
-		game.map.player.pos.x = 6.5;
-		game.map.player.pos.y = 6.5;
+		game.map.player.pos.x = 1.5;
+		game.map.player.pos.y = 1.5;
 		game.map.player.angle = 7.0 * PI / 4.0;
 		game.map.player.last_x = RES_WIDTH / 2;
 	}

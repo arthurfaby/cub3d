@@ -131,4 +131,10 @@ double	ray_no(t_wall *next_wall, t_map *map, double ray);
 // ray_ne.c
 double	ray_ne(t_wall *next_wall, t_map *map, double ray);
 
+// ray_se.c
+double	ray_se(t_wall *next_wall, t_map *map, double ray);
+
+// ray_so.c
+double	ray_so(t_wall *next_wall, t_map *map, double ray);
+
 #endif

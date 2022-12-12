@@ -13,6 +13,7 @@ SRCS			= \
 				srcs/print_wall.c \
 				srcs/ray_no.c \
 				srcs/ray_ne.c \
+				srcs/sud.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)
