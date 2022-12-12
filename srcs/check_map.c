@@ -9,6 +9,78 @@ static int	check_valid_char(char c)
 	return (0);
 }
 
+static int	check_wall_border(t_map *map, int i, int j)
+{
+	if (i == map->height - 1 || i == 0)
+		return (0);
+	if (j == map->width - 1 || j == 0)
+		return (0);
+	if (map->board[i - 1][j] == -1)
+		return (0);
+	if (map->board[i + 1][j] == -1)
+		return (0);
+	if (map->board[i][j - 1] == -1)
+		return (0);
+	if (map->board[i][j + 1] == -1)
+		return (0);
+	return (1);
+}
+
+static void	replace_one(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->board[i][j] == -1)
+				map->board[i][j] = 1;
+			j++;
+		}
+		i++;
+	}
+}
+
+static int	check_if_there_player(t_map *map)
+{
+	if (map->player.pos.x == 0 
+		&& map->player.pos.y == 0 
+		&& map->player.angle == 0)
+		return (-1);
+	return (1);
+}
+
+int	check_map_content(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (check_if_there_player(map) == -1)
+	{
+		ft_print_error(ERROR" : there is no player in the map.\n");
+		return (0);
+	}
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->board[i][j] == 0 || map->board[i][j] == 2)
+				if (check_wall_border(map, i, j) == 0)
+					return (0);
+			j++;
+		}
+		i++;
+	}
+	replace_one(map);
+	return (1);
+}
+
 int	check_map(int fd, t_map *map)
 {
 	int		map_width;
@@ -51,7 +123,7 @@ int	check_map(int fd, t_map *map)
 		return (1);
 	}
 	free(line);
-	map->width = map_width;
+		map->width = map_width;
 	map->height = map_height;
 	return (0);
 }

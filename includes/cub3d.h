@@ -113,6 +113,7 @@ int		check_value_color(char **split_line);
 
 // check_map.c
 int		check_map(int fd, t_map *map);
+int		check_map_content(t_map *map);
 
 // interaction.c
 void	open_door(t_map *map);
