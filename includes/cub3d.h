@@ -123,5 +123,12 @@ int		mouse_move(int x, int y, t_game *game);
 
 // utils.c
 void	change_angle(t_player *player, double speed);
+int		check_wall_in_map(t_map *map, t_wall *next_wall);
+
+// ray_no.c
+double	ray_no(t_wall *next_wall, t_map *map, double ray);
+
+// ray_ne.c
+double	ray_ne(t_wall *next_wall, t_map *map, double ray);
 
 #endif
