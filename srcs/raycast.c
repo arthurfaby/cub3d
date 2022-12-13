@@ -32,13 +32,13 @@ void	raycasting(t_map *map, t_window *window)
 	t_wall	next_wall;
 	t_point	center;
 	t_point	end;
-//	int		i;
+	int		i;
 	
 	center.x = 157.5;
 	center.y = 157.5;
 	inc = (double)FOV / (double)RES_WIDTH;
 	ray  = map->player.angle - FOV / 2.0;
-//	i = 0;
+	i = 0;
 	while (ray <= map->player.angle + (double)FOV / 2.0)
 	{
 		if (ray >= PI && ray < 3.0 * PI / 2.0)
@@ -53,6 +53,6 @@ void	raycasting(t_map *map, t_window *window)
 		end.x = distance / 2 * sin(ray) + center.x;
 		end.y = distance / 2 * cos(ray) + center.y;
 		draw_line(window, &center, &end, 0xFF00FF);	
-		//print_ray(distance, window, i++);	
+		print_ray(distance, window, i++);	
 	}	
 }
