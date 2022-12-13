@@ -27,6 +27,12 @@ typedef enum e_face
 	WEST
 } t_face;
 
+typedef enum e_side
+{
+	HORIZONTAL = 12,
+	VERTICAL
+} t_side;
+
 # define ERROR "[\e[31mERROR\e[0m]"
 
 typedef struct s_point
@@ -40,6 +46,7 @@ typedef struct s_wall
 	double	x;
 	double	y;
 	double	distance;
+	t_side	side;
 	t_face	face;
 }	t_wall;
 
@@ -113,7 +120,7 @@ int		check_error_element(int fd);
 void	print_wall(t_wall next_wall, int find_wall_y, int find_wall_x, t_map *map, double ray, int i, t_window *window);
 
 //raycasting.c
-void	raycasting(t_map *map, t_window *window);
+void	raycasting(t_map *map, t_window *window, t_textures *textures);
 
 // minimap.c
 void	draw_minimap(t_window *window, t_map *map);

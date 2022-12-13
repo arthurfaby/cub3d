@@ -23,7 +23,7 @@ int	mouse_move(int x, int y, t_game *game)
 	mlx_mouse_get_pos(game->window.mlx, game->window.win, &new_x, &new_y);
 	if (x > game->map.player.last_x + 10 || x < game->map.player. last_x - 10)
 	{
-		raycasting(&game->map, &game->window);
+		raycasting(&game->map, &game->window, &game->textures);
 		draw_minimap(&game->window, &game->map);
 		game->map.player.last_x = new_x;
 	}

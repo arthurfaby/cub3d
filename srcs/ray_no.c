@@ -56,14 +56,25 @@ double	ray_no(t_wall *next_wall, t_map *map, double ray)
 {
 	double	distance_vert;
 	double	distance_hori;
+	t_wall	temp_wall;
 
-	distance_vert = wall_vert_no(next_wall, map, ray);
+	distance_vert = wall_vert_no(&temp_wall, map, ray);
 	distance_hori = wall_hori_no(next_wall, map, ray);
 	if (distance_vert == -1)
+	{
+		next_wall->side = HORIZONTAL;
+		next_wall->face = SOUTH;
 		return (distance_hori);
-	else if (distance_hori == -1)
+	}
+	else if (distance_hori == -1 || distance_vert < distance_hori)
+	{
+		next_wall->side = VERTICAL;
+		next_wall->face = EAST;
+		next_wall->x = temp_wall.x;
+		next_wall->y = temp_wall.y;
 		return (distance_vert);
-	if (distance_vert < distance_hori)
-		return (distance_vert);
+	}
+	next_wall->side = HORIZONTAL;
+	next_wall->face = SOUTH;
 	return (distance_hori);
 }
