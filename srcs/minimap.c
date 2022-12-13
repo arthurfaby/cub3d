@@ -12,21 +12,6 @@ static void	draw_player(t_window *window, t_map *map, int tile_border)
 	end.x = 20 * sin(map->player.angle) + center.x;
 	end.y = 20 * cos(map->player.angle) + center.y;
 	draw_line(window, &center, &end, 0);
-	end.x = 70 * sin(map->player.angle - FOV / 2) + center.x;
-	end.y = 70 * cos(map->player.angle - FOV / 2) + center.y;
-	draw_line(window, &center, &end, 0x00FF00);
-	end.x = 70 * sin(map->player.angle + FOV / 2) + center.x;
-	end.y = 70 * cos(map->player.angle + FOV / 2) + center.y;
-	draw_line(window, &center, &end, 0xFF0000);
-	/*end.x = 70 * sin(0) + center.x;
-	end.y = 70 * cos(0) + center.y;
-	draw_line(window, &center, &end, 0xFFFFFF);
-	end.x = 70 * sin(PI / 2) + center.x;
-	end.y = 70 * cos(PI / 2) + center.y;
-	draw_line(window, &center, &end, 0x00FF00);
-	end.x = 70 * sin(- (PI / 2)) + center.x;
-	end.y = 70 * cos(- (PI / 2)) + center.y;
-	draw_line(window, &center, &end, 0x582900);*/
 	i = -3;
 	while (i < 4)
 	{
@@ -126,5 +111,4 @@ void	draw_minimap(t_window *window, t_map *map)
 	}
 	draw_player(window, map, tile_border);
 	mlx_put_image_to_window(window->mlx, window->win, window->image->img, 0, 0);
-	raycasting(map, window);
 }

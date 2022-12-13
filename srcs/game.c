@@ -145,12 +145,13 @@ void	launch_game(char *argv[])
 		game.map.player.last_x = RES_WIDTH / 2;
 	}
 	init_window(&game.window);
+	raycasting(&game.map, &game.window);
 	draw_minimap(&game.window, &game.map);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
-//	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
-//		mouse_move, &game);
-	//mlx_mouse_move(game.window.mlx, game.window.win,
-	//	RES_WIDTH / 2, RES_HEIGHT / 2);
-	//mlx_mouse_hide(game.window.mlx, game.window.win);
+	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
+		mouse_move, &game);
+	mlx_mouse_move(game.window.mlx, game.window.win,
+		RES_WIDTH / 2, RES_HEIGHT / 2);
+	mlx_mouse_hide(game.window.mlx, game.window.win);
 	mlx_loop(game.window.mlx);
 }
