@@ -12,7 +12,7 @@ static double	wall_vert_no(t_wall *next_wall, t_map *map, double ray)
 	next_wall->y = (map->player.pos.y * 64.0 + (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
 	while ((int)next_wall->x/64 >= 0 && (int)next_wall->y/64 >= 0)
 	{
-		if (next_wall->x > 0 && next_wall->y > 0 && map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 1)
+		if (next_wall->x > 0 && next_wall->y > 0 && map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0)
 		{
 
 			distance = sqrt(pow((map->player.pos.x * 64) - (next_wall->x), 2) + pow((map->player.pos.y * 64) - (next_wall->y), 2));
@@ -39,10 +39,10 @@ static double	wall_hori_no(t_wall *next_wall, t_map *map, double ray)
 	next_wall->x = (map->player.pos.x * 64.0 + (map->player.pos.y * 64 - next_wall->y) / tan(-ray));
 	while ((int)next_wall->x/64 >= 0 && (int)next_wall->y/64 >= 0)
 	{
-		if (next_wall->x > 0 && next_wall->y > 0 && map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 1)
+		if (next_wall->x > 0 && next_wall->y > 0 && map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0)
 		{
 			distance = sqrt(pow((map->player.pos.x * 64) - (next_wall->x), 2) + pow((map->player.pos.y * 64) - (next_wall->y), 2));
-		//	distance *= cos(ray);
+			//distance *= cos(ray);
 			if (distance < 0)
 				distance = -distance;
 			return (distance);
