@@ -17,7 +17,7 @@
 # define PI 3.1415926535
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
-# define FOV PI 
+# define FOV PI/3 
 
 typedef struct s_point
 {
@@ -30,14 +30,6 @@ typedef struct s_wall
 	double	x;
 	double	y;
 }	t_wall;
-
-/*typedef struct s_camera
-{
-	double	dirx;
-	double	diry;
-	double	planex;
-	double	planey;
-}	t_camera;*/
 
 typedef struct s_image
 {
