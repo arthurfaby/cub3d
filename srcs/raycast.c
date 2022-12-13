@@ -42,7 +42,7 @@ void	raycasting(t_map *map, t_window *window)
 	int		i;
 	
 	inc = (double)FOV / (double)RES_WIDTH;
-	ray  = map->player.angle - FOV / 2.0;
+	ray = map->player.angle - FOV / 2.0;
 	i = 0;
 	distance = -1;
 	while (ray <= map->player.angle + (double)FOV / 2.0)
