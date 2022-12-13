@@ -9,6 +9,7 @@ static void	init_texture(t_texture *texture, void *mlx, char **splitted)
 	texture->texture = mlx_xpm_file_to_image(mlx, splitted[1], &width, &height);
 	texture->width = width;
 	texture->height = height;
+	printf("[%s] : RGB[%d][%d] == [%x]\n", splitted[1], 0, 3, get_color_in_image(texture, 0, 3));
 }
 
 static int	get_rgb_color(char *colors)
@@ -24,7 +25,6 @@ static int	get_rgb_color(char *colors)
 	color <<= 8;
 	splitted_colors[2][ft_strlen(splitted_colors[2]) - 1] = 0;
 	color |= ft_atoi(splitted_colors[2]);
-	ft_printf("[COLOR DEBUG] : (%s, %s, %s) -> %x\n", splitted_colors[0], splitted_colors[1], splitted_colors[2], color);
 	return (color);
 }
 

@@ -42,7 +42,6 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		map->player.angle = PI;
 	if (c == 'E')
 		map->player.angle = 0;
-	printf("%f %f %f\n", map->player.pos.x, map->player.pos.y, map->player.angle);
 	return (0);
 }
 

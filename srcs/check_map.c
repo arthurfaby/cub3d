@@ -100,7 +100,6 @@ int	check_map(int fd, t_map *map)
 		free(line);
 		line = get_next_line(fd, 1);
 	}
-	ft_printf("LINE : %s\n", line);
 	while (line && ft_strcmp(line, "\n") != 0)
 	{
 		j++;

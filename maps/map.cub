@@ -1,8 +1,8 @@
 
 NO textures/wood.xpm
-SO background.xpm
-WE background.xpm
-EA background.xpm
+SO textures/cobblestone.xpm
+WE textures/grass_block.xpm
+EA textures/bricks.xpm
 F 150,240,140
 C 255,255,255
 

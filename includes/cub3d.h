@@ -101,9 +101,10 @@ int		launch_game(char *argv[]);
 // window.c
 void	init_window(t_window *window);
 
-// image.c
+// drawing.c
 void	img_pixel_put(t_window *window, int y, int x, int color);
 void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
+int		get_color_in_image(t_texture *texture, int x, int y);
 
 // hook.c
 int		key_hook(int keycode, t_game *game);

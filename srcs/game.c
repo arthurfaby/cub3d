@@ -10,9 +10,6 @@ int	launch_game(char *argv[])
 	if (parse_all(argv[1], &game) == -1)
 		return (2);
 
-	printf("info : \n");
-	printf("\tpx = %f\n\tpy = %f\n\tpa = %f\n", game.map.player.pos.x, game.map.player.pos.y, game.map.player.angle);
-
 	draw_minimap(&game.window, &game.map);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
 	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
