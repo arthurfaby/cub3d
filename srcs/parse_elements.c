@@ -2,8 +2,8 @@
 
 static void	init_texture(t_texture *texture, void *mlx, char **splitted)
 {
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 
 	splitted[1][ft_strlen(splitted[1]) - 1] = 0;
 	texture->texture = mlx_xpm_file_to_image(mlx, splitted[1], &width, &height);
