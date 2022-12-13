@@ -54,17 +54,16 @@ double	ray_se(t_wall *next_wall, t_map *map, double ray)
 {
 	double	distance_vert;
 	double	distance_hori;
-	
+
 	distance_vert = wall_vert_se(next_wall, map, ray);
 	distance_hori = wall_hori_se(next_wall, map, ray);
 	if (distance_vert == -1)
 		return (distance_hori);
-	if (distance_hori == -1)
+	else if (distance_hori == -1)
 		return (distance_vert);
-	else if (distance_vert < distance_hori)
+	if (distance_vert < distance_hori)
 		return (distance_vert);
-	else
-		return (distance_hori);
+	return (distance_hori);
 }
 
 double	wall_vert_so(t_wall *next_wall, t_map *map, double	ray)
@@ -121,17 +120,14 @@ double	ray_so(t_wall *next_wall, t_map *map, double ray)
 {
 	double	distance_vert;
 	double	distance_hori;
-	
+
 	distance_vert = wall_vert_so(next_wall, map, ray);
 	distance_hori = wall_hori_so(next_wall, map, ray);
 	if (distance_vert == -1)
 		return (distance_hori);
-	if (distance_hori == -1)
+	else if (distance_hori == -1)
 		return (distance_vert);
-	else if (distance_vert < distance_hori)
+	if (distance_vert < distance_hori)
 		return (distance_vert);
-	else
-		return (distance_hori);
+	return (distance_hori);
 }
-
-

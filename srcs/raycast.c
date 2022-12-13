@@ -1,11 +1,12 @@
 #include "cub3d.h"
 
-void	print_ray(double ray, double distance, t_window *window, int i)
+void	print_ray(double ray, double distance, t_wall *next_wall, t_window *window, int i)
 {
 	int	height;
 	int	k;
 	int	y;
 	int	cpt;
+	(void)next_wall;
 	
 	if (distance == -1)
 		return ;
@@ -30,7 +31,6 @@ void	print_ray(double ray, double distance, t_window *window, int i)
 		img_pixel_put(window, y++, i, 0xFF0000);
 		k--;
 	}
-		
 }	
 
 void	raycasting(t_map *map, t_window *window)
@@ -44,6 +44,7 @@ void	raycasting(t_map *map, t_window *window)
 	inc = (double)FOV / (double)RES_WIDTH;
 	ray  = map->player.angle - FOV / 2.0;
 	i = 0;
+	distance = -1;
 	while (ray <= map->player.angle + (double)FOV / 2.0)
 	{
 		if (ray >= PI && ray < 3.0 * PI / 2.0)
@@ -55,6 +56,6 @@ void	raycasting(t_map *map, t_window *window)
 		else if(ray > 1.5708 && ray < 3.14159)
 			distance = ray_so(&next_wall, map, ray);
 		ray = ray + inc;
-		print_ray(ray - map->player.angle, distance, window, i++);	
+		print_ray(ray - map->player.angle, distance, &next_wall, window, i++);	
 	}	
 }

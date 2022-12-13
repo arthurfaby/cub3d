@@ -19,6 +19,14 @@
 # define RES_HEIGHT 1080
 # define FOV PI/3 
 
+typedef enum e_face
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+} t_face;
+
 typedef struct s_point
 {
 	double	x;
@@ -29,6 +37,8 @@ typedef struct s_wall
 {
 	double	x;
 	double	y;
+	double	distance;
+	t_face	face;
 }	t_wall;
 
 typedef struct s_image
@@ -102,9 +112,10 @@ void	launch_game(char *argv[]);
 // window.c
 void	init_window(t_window *window);
 
-// image.c
+// drawing.c
 void	img_pixel_put(t_window *window, int y, int x, int color);
 void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
+int		get_color_in_image(void *img, int x, int y);
 
 // hook.c
 int		key_hook(int keycode, t_game *game);

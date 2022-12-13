@@ -145,6 +145,19 @@ void	launch_game(char *argv[])
 		game.map.player.last_x = RES_WIDTH / 2;
 	}
 	init_window(&game.window);
+
+	// TEST FOR TEXURES
+	void	*img;
+	int		trash;
+	img = mlx_xpm_file_to_image(game.window.mlx, "textures/wood.xpm", &trash, &trash);
+	get_color_in_image(img, 0, 0);
+	get_color_in_image(img, 0, 1);
+	get_color_in_image(img, 0, 2);
+	get_color_in_image(img, 0, 3);
+	get_color_in_image(img, 0, 4);
+	get_color_in_image(img, 0, 5);
+
+
 	raycasting(&game.map, &game.window);
 	draw_minimap(&game.window, &game.map);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
