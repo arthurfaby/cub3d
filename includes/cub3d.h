@@ -17,7 +17,7 @@
 # define PI 3.1415926535
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
-# define FOV PI/3.0 
+# define FOV PI 
 
 typedef struct s_point
 {
