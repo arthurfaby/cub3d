@@ -1,11 +1,14 @@
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 int	main(int argc, char *argv[])
 {
-	(void) argc;
+	int	ret;
 
-	printf("Welcome to cub3d :)\n");
-	launch_game(argv);
-	//cub3d here and its done
-	return (0);
+	if (argc != 2)
+	{
+		ft_print_error(ERROR": format must be [%s <map.cub>]\n", argv[0]);
+		return (0);
+	}
+	ret = launch_game(argv);
+	return (ret);
 }

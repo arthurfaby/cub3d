@@ -2,6 +2,14 @@ NAME			= cub3d
 
 SRCS			= \
 				main.c \
+				srcs/parsing.c \
+				srcs/parse_elements.c \
+				srcs/parse_map.c \
+				srcs/error.c \
+				srcs/check_error_element.c \
+				srcs/check_texture.c \
+				srcs/check_color.c \
+				srcs/check_map.c \
 				srcs/minimap.c \
 				srcs/window.c \
 				srcs/game.c \
@@ -9,6 +17,11 @@ SRCS			= \
 				srcs/hook.c \
 				srcs/interaction.c \
 				srcs/utils.c \
+				srcs/raycast.c \
+				srcs/print_wall.c \
+				srcs/ray_no.c \
+				srcs/ray_ne.c \
+				srcs/sud.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

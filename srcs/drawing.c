@@ -1,5 +1,23 @@
 #include "cub3d.h"
 
+int		get_color_in_image(t_texture *texture, int y, int x)
+{
+	t_image	image;
+	int		i;
+	int		color;
+
+	color = 0;
+	image.img = texture->texture;
+	image.addr = mlx_get_data_addr(image.img, &image.bpp, &image.line_len, &image.endian);
+	i = ((y * texture->width) + x) * 4;
+	color = color | (unsigned char)(image.addr[i + 2]);
+	color = color << 8;
+	color = color | (unsigned char)(image.addr[i + 1]);
+	color = color << 8;
+	color = color | (unsigned char)(image.addr[i]);
+	return (color);
+}
+
 void	img_pixel_put(t_window *window, int y, int x, int color)
 {
 	char	*pixel;

@@ -66,6 +66,7 @@ int	key_hook(int keycode, t_game *game)
 		change_angle(&game->map.player, -PI / 64);
 	if (keycode == XK_Right)
 		change_angle(&game->map.player, +PI / 64);
+	raycasting(&game->map, &game->window);
 	draw_minimap(&game->window, &game->map);
 	return (0);
 }
