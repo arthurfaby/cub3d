@@ -17,6 +17,11 @@ SRCS			= \
 				srcs/hook.c \
 				srcs/interaction.c \
 				srcs/utils.c \
+				srcs/raycast.c \
+				srcs/print_wall.c \
+				srcs/ray_no.c \
+				srcs/ray_ne.c \
+				srcs/sud.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)
