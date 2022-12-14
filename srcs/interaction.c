@@ -14,32 +14,21 @@ int	mouse_move(int x, int y, t_game *game)
 	}
 	clock = 0;
 	render = 0;
-	if (x > RES_WIDTH / 2 + 10)
+	if (x > RES_WIDTH / 2 + 1)
 	{
 		render = 1;
-		change_angle(&game->map.player, PI / 64);
+		change_angle(&game->map.player, PI / 96);
 	}
-	else if (x < RES_WIDTH / 2 - 10)
+	else if (x < RES_WIDTH / 2 - 1)
 	{
 		render = 1;
-		change_angle(&game->map.player, -PI / 64);	
+		change_angle(&game->map.player, -PI / 96);	
 	}
-	//if (x > game->map.player.last_x + 10)
-	//	change_angle(&game->map.player, PI / 32);
-	//if (x < game->map.player.last_x - 10)
-	//	change_angle(&game->map.player, -PI / 32);
-	//if (x < 50 || x > RES_WIDTH - 50)
-	//	mlx_mouse_move(game->window.mlx, game->window.win, RES_WIDTH / 2, y);
 	if (y < 200 || y > RES_HEIGHT - 200)
 		mlx_mouse_move(game->window.mlx, game->window.win, x, RES_HEIGHT / 2);
 	mlx_mouse_get_pos(game->window.mlx, game->window.win, &new_x, &new_y);
-	//if (x > game->map.player.last_x + 10 || x < game->map.player. last_x - 10)
 	if (render)
-	{
 		mlx_mouse_move(game->window.mlx, game->window.win, RES_WIDTH / 2, y);
-	//	raycasting(&game->map, &game->window, &game->textures);
-	//	draw_minimap(&game->window, &game->map);
-	}
 	return (0);
 }
 

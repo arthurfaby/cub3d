@@ -48,7 +48,6 @@ static double	wall_hori_no(t_wall *next_wall, t_map *map, double ray)
 		next_wall->y = next_wall->y - inc_y;
 	}
 	return (-1);
-
 }
 
 double	ray_no(t_wall *next_wall, t_map *map, double ray)
