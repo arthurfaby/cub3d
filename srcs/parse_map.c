@@ -32,6 +32,8 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		return (1);
 	if (c == '0')
 		return (0);
+	if (map->player.pos.x != 0)
+		return (-42);
 	map->player.pos.x = j + 0.5;
 	map->player.pos.y = i + 0.5;
 	if (c == 'N')
@@ -45,7 +47,7 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 	return (0);
 }
 
-static void	fill_board(int fd, t_map *map, int **board)
+static int	fill_board(int fd, t_map *map, int **board)
 {
 	int		i;
 	int		j;
@@ -68,12 +70,17 @@ static void	fill_board(int fd, t_map *map, int **board)
 			if (j > line_len - 2)
 				board[i][j] = -1;
 			else
+			{
 				board[i][j] = convert_tile_and_check_player(map, line[j], i, j);
+				if (board[i][j] == -42)
+					return (0);
+			}
 		}
 		i++;
 		free(line);
 		line = get_next_line(fd, 1);
 	}
+	return (1);
 }
 
 int	parse_map(int fd, t_game *game)
@@ -83,7 +90,11 @@ int	parse_map(int fd, t_game *game)
 	board = malloc_board(game->map.width, game->map.height);
 	if (!board)
 		return (-1);
-	fill_board(fd, &game->map, board);
+	if (!fill_board(fd, &game->map, board))
+	{
+		ft_print_error(ERROR" : 2 or more players in the map.\n");
+		return (-1);
+	}
 	game->map.board = board;
 	if (check_map_content(&game->map) == 0)
 	{

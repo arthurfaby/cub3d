@@ -95,7 +95,7 @@ int	check_map(int fd, t_map *map)
 	line = get_next_line(fd, 1);
 	while (line)
 	{
-		if (ft_strcmp(line, "\n") != 0/* && !line_contains_elem(line)*/)
+		if (ft_strcmp(line, "\n") != 0)
 			break;	
 		free(line);
 		line = get_next_line(fd, 1);
@@ -122,7 +122,7 @@ int	check_map(int fd, t_map *map)
 		return (1);
 	}
 	free(line);
-		map->width = map_width;
+	map->width = map_width;
 	map->height = map_height;
 	return (0);
 }

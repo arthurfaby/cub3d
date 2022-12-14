@@ -85,7 +85,7 @@ double	wall_vert_so(t_wall *next_wall, t_map *map, double	ray)
 
 	inc_x = 64.0;
 	inc_y = 64.0 * tan(-ray);
-	next_wall->x = (int)map->player.pos.x * 64.0 - 1.0;
+	next_wall->x = (int)map->player.pos.x * 64.0 - 0.0000001;
 	next_wall->y = (map->player.pos.y * 64.0 + (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{

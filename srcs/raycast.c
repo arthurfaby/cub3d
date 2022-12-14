@@ -46,9 +46,9 @@ void	print_ray(double ray, t_wall *next_wall, t_window *window, int i, t_texture
 	end_wall = RES_HEIGHT / 2 + height / 2;
 	while (y < RES_HEIGHT)
 	{
-		if (y < start_wall) // CEILING
+		if (y <= start_wall) // CEILING
 			color = textures->ceiling;
-		else if (y > end_wall) // FLOOR
+		else if (y >= end_wall) // FLOOR
 			color = textures->floor;
 		else // WALL
 			color = choose_wall_color(y - start_wall, height, textures, next_wall);

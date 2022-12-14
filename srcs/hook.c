@@ -6,10 +6,10 @@ static void	move_up(t_map *map)
 
 	next_pos.x = map->player.pos.x + cos(map->player.angle) * 0.1;
 	next_pos.y = map->player.pos.y + sin(map->player.angle) * 0.1;
-	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
-		return ;
-	map->player.pos.x = next_pos.x;
-	map->player.pos.y = next_pos.y;
+	if (map->board[(int)next_pos.y][(int)map->player.pos.x] == 0)
+		map->player.pos.y = next_pos.y;
+	if (map->board[(int)(map->player.pos.y)][(int)(next_pos.x)] == 0)
+		map->player.pos.x = next_pos.x;
 }
 
 static void	move_down(t_map *map)
@@ -18,10 +18,10 @@ static void	move_down(t_map *map)
 
 	next_pos.x = map->player.pos.x - cos(map->player.angle) * 0.1;
 	next_pos.y = map->player.pos.y - sin(map->player.angle) * 0.1;
-	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
-		return ;
-	map->player.pos.x = next_pos.x;
-	map->player.pos.y = next_pos.y;
+	if (map->board[(int)next_pos.y][(int)map->player.pos.x] == 0)
+		map->player.pos.y = next_pos.y;
+	if (map->board[(int)(map->player.pos.y)][(int)(next_pos.x)] == 0)
+		map->player.pos.x = next_pos.x;
 }
 
 static void	move_left(t_map *map)
@@ -30,10 +30,10 @@ static void	move_left(t_map *map)
 
 	next_pos.x = map->player.pos.x + sin(map->player.angle) * 0.1;
 	next_pos.y = map->player.pos.y - cos(map->player.angle) * 0.1;
-	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
-		return ;
-	map->player.pos.x = next_pos.x;
-	map->player.pos.y = next_pos.y;
+	if (map->board[(int)next_pos.y][(int)map->player.pos.x] == 0)
+		map->player.pos.y = next_pos.y;
+	if (map->board[(int)(map->player.pos.y)][(int)(next_pos.x)] == 0)
+		map->player.pos.x = next_pos.x;
 }
 
 static void	move_right(t_map *map)
@@ -42,10 +42,10 @@ static void	move_right(t_map *map)
 
 	next_pos.x = map->player.pos.x - sin(map->player.angle) * 0.1;
 	next_pos.y = map->player.pos.y + cos(map->player.angle) * 0.1;
-	if (map->board[(int)(next_pos.y)][(int)(next_pos.x)] != 0)
-		return ;
-	map->player.pos.x = next_pos.x;
-	map->player.pos.y = next_pos.y;
+	if (map->board[(int)next_pos.y][(int)map->player.pos.x] == 0)
+		map->player.pos.y = next_pos.y;
+	if (map->board[(int)(map->player.pos.y)][(int)(next_pos.x)] == 0)
+		map->player.pos.x = next_pos.x;
 }
 
 int	key_hook(int keycode, t_game *game)
@@ -66,7 +66,7 @@ int	key_hook(int keycode, t_game *game)
 		change_angle(&game->map.player, -PI / 64);
 	if (keycode == XK_Right)
 		change_angle(&game->map.player, +PI / 64);
-	raycasting(&game->map, &game->window, &game->textures);
-	draw_minimap(&game->window, &game->map);
+//	raycasting(&game->map, &game->window, &game->textures);
+//	draw_minimap(&game->window, &game->map);
 	return (0);
 }
