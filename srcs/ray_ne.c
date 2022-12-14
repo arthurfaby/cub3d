@@ -13,7 +13,8 @@ static double	wall_vert_ne(t_wall *next_wall, t_wall *wall_hori, t_map *map, dou
 	next_wall->y = (map->player.pos.y * 64.0 + (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
-		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0)
+		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
+			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
 			distance = sqrt(pow((map->player.pos.x * 64.0) - (next_wall->x), 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
 			if (distance < 0)
@@ -39,7 +40,8 @@ static double	wall_hori_ne(t_wall *next_wall, t_wall wall_vert, t_map *map, doub
 	next_wall->x = (map->player.pos.x * 64.0 + (map->player.pos.y * 64.0 - next_wall->y) / tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
-		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0)
+		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
+			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
 			distance = sqrt(pow((map->player.pos.x * 64.0) - (int)(next_wall->x), 2) + pow((map->player.pos.y * 64.0) - (next_wall->y), 2));
 			if (distance < 0)
