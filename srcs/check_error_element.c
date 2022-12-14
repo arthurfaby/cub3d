@@ -10,6 +10,8 @@ static int	check_key_exists(char *key)
 		return (1);
 	if (ft_strcmp(key, "EA") == 0)
 		return (1);
+	if (ft_strcmp(key, "DO") == 0)
+		return (1);
 	if (ft_strcmp(key, "F") == 0)
 		return (1);
 	if (ft_strcmp(key, "C") == 0)
@@ -48,12 +50,12 @@ static int	check_line_element(char *line)
 
 int	check_error_element(int fd)
 {
-	int		elements[6];
+	int		elements[7];
 	int		nb_elements;
 	char	*line;
 	int		check;
 
-	ft_memset(elements, 0, 6);	
+	ft_memset(elements, 0, 7);	
 	line = get_next_line(fd, 1);
 	nb_elements = 0;
 	while (line != NULL && nb_elements != 6)

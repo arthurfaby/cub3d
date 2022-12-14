@@ -2,17 +2,32 @@
 
 static int	render(t_game *game)
 {
-	//static int	clock = 0;
-//
-//	if (clock < 1)
-//	{
-//		clock++;
-//		return (0);
-//	}
-//	clock = 0;
+	static int i = 0;
+
+	if (i < 5)
+		game->textures.south = game->textures.south_1;
+	else if (i < 10)
+		game->textures.south = game->textures.south_2;
+	else if (i < 15)
+		game->textures.south = game->textures.south_3;
+	else if (i < 20)
+		game->textures.south = game->textures.south_4;
+	else if (i < 25)
+		game->textures.south = game->textures.south_5;
+	else
+		i = 0;
+	i++;
 	raycasting(&game->map, &game->window, &game->textures);
 	draw_minimap(&game->window, &game->map);
 	return (1);
+}
+
+static int	quit(t_game *game)
+{
+	// free all
+	(void)game;
+	exit(0);
+	return (0);
 }
 
 int	launch_game(char *argv[])
@@ -24,6 +39,7 @@ int	launch_game(char *argv[])
 	init_window(&game.window);
 	if (parse_all(argv[1], &game) == -1)
 		return (2);
+	mlx_hook(game.window.win, DestroyNotify, StructureNotifyMask, &quit, &game);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
 	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
 		mouse_move, &game);

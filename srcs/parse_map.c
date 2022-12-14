@@ -57,6 +57,9 @@ static int	fill_board(int fd, t_map *map, int **board)
 	int		line_len;
 
 	i = 0;
+	map->player.pos.x = 0;
+	map->player.pos.y = 0;
+	map->player.angle = 0;
 	line = get_next_line(fd, 1);
 	while (line && ft_strcmp(line, "\n") == 0)
 	{

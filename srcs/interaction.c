@@ -2,24 +2,17 @@
 
 int	mouse_move(int x, int y, t_game *game)
 {
-	static int	clock = 0;
 	int			new_x;
 	int			new_y;
 	int			render;
 
-	if (clock < 2)
-	{
-		clock++;		
-	return (1);
-	}
-	clock = 0;
 	render = 0;
-	if (x > RES_WIDTH / 2 + 1)
+	if (x > RES_WIDTH / 2 + 20)
 	{
 		render = 1;
 		change_angle(&game->map.player, PI / 96);
 	}
-	else if (x < RES_WIDTH / 2 - 1)
+	else if (x < RES_WIDTH / 2 - 20)
 	{
 		render = 1;
 		change_angle(&game->map.player, -PI / 96);	
