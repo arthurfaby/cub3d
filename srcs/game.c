@@ -2,14 +2,14 @@
 
 static int	render(t_game *game)
 {
-	static int	clock = 0;
-
-	if (clock < 1)
-	{
-		clock++;
-		return (0);
-	}
-	clock = 0;
+	//static int	clock = 0;
+//
+//	if (clock < 1)
+//	{
+//		clock++;
+//		return (0);
+//	}
+//	clock = 0;
 	raycasting(&game->map, &game->window, &game->textures);
 	draw_minimap(&game->window, &game->map);
 	return (1);
