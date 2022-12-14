@@ -32,6 +32,8 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		return (1);
 	if (c == '0')
 		return (0);
+	if (c == '2')
+		return (2);
 	if (map->player.pos.x != 0)
 		return (-42);
 	map->player.pos.x = j + 0.5;

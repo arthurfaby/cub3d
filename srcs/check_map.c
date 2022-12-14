@@ -2,7 +2,7 @@
 
 static int	check_valid_char(char c)
 {
-	if (c == ' ' || c == '1' || c == '0' || c == 'N'
+	if (c == ' ' || c == '1' || c == '0' || c == 'N' || c == '2'
 		|| c == 'W' || c == 'E' || c== 'S' || c =='\n')
 		return (1);
 	ft_print_error(ERROR" : char [%c] is not valid in the map.\n", c);
