@@ -49,5 +49,7 @@ void	open_door(t_map *map)
 	if (player.angle >= 5.0 * PI / 4.0 && player.angle < 7.0 * PI / 4.0)
 		pointing.y -= 1;
 	if (map->board[(int)pointing.y][(int)(pointing.x)] == 2)
-		map->board[(int)pointing.y][(int)(pointing.x)] = 0;
+		map->board[(int)pointing.y][(int)(pointing.x)] = 3;
+	else if (map->board[(int)pointing.y][(int)(pointing.x)] == 3)
+		map->board[(int)pointing.y][(int)(pointing.x)] = 2;
 }
