@@ -1,15 +1,12 @@
 #include "cub3d.h"
 
-static int	choose_wall_color(int y, int height, t_textures *textures, t_wall *next_wall)
+static int	choose_wall_color(int y, int height,
+	t_textures *textures, t_wall *next_wall)
 {
-	(void)textures;
-	(void)next_wall;
-	(void)height;
 	t_texture	txt;
 	int			color;
 	double		ratio;
 	int			col;
-	(void)col;
 
 	if (next_wall->type == DOOR)
 		txt = textures->door;
@@ -30,7 +27,8 @@ static int	choose_wall_color(int y, int height, t_textures *textures, t_wall *ne
 	return (color);
 }
 
-void	print_ray(double ray, t_wall *next_wall, t_window *window, int i, t_textures *textures)
+void	print_ray(double ray, t_wall *next_wall,
+	t_window *window, int i, t_textures *textures)
 {
 	int	y;
 	int	height;
@@ -38,8 +36,6 @@ void	print_ray(double ray, t_wall *next_wall, t_window *window, int i, t_texture
 	int	end_wall;
 	int	color;
 	double	distance;
-	(void)textures;
-	(void)next_wall;
 
 	y = 0;
 	distance = next_wall->distance;
@@ -59,6 +55,19 @@ void	print_ray(double ray, t_wall *next_wall, t_window *window, int i, t_texture
 	}
 }
 
+double	get_distance(t_wall *next_wall, t_map *map)
+{
+	double	distance;
+
+	next_wall->type = WALL;
+	if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] == 2)
+		next_wall->type = DOOR;
+	distance = sqrt(pow((map->player.pos.x * 64) - next_wall->x, 2)
+			+ pow((map->player.pos.y * 64) - next_wall->y, 2));
+	if (distance < 0)
+		distance = -distance;
+	return (distance);
+}
 
 void	raycasting(t_map *map, t_window *window, t_textures *textures)
 {
@@ -74,6 +83,7 @@ void	raycasting(t_map *map, t_window *window, t_textures *textures)
 //	distance = -1;
 	while (ray <= map->player.angle + (double)FOV / 2.0)
 	{
+		next_wall.ray = ray;
 		if (ray >= PI && ray < 3.0 * PI / 2.0)
 			next_wall.distance = ray_no(&next_wall, map, ray);
 		else if (ray < 0 || (ray > 3.0 * PI / 2.0 && ray < 2 * PI))

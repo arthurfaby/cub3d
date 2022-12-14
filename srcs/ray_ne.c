@@ -4,25 +4,17 @@ static double	wall_vert_ne(t_wall *next_wall, t_map *map, double ray)
 {
 	double	inc_x;
 	double	inc_y;
-	double	distance;
 
 	inc_x = 64.0;
 	inc_y = 64.0 * tan(-ray);	
 	next_wall->x = (int)map->player.pos.x * 64.0 + 64.0;
-	next_wall->y = (map->player.pos.y * 64.0 + (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
+	next_wall->y = (map->player.pos.y * 64.0
+			+ (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
-		{
-			next_wall->type = WALL;
-			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
-				next_wall->type = DOOR;
-			distance = sqrt(pow((map->player.pos.x * 64.0) - (next_wall->x), 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
-			if (distance < 0)
-				distance = -distance;
-			return (distance);
-		}
+			return (get_distance(next_wall, map));
 		next_wall->x = next_wall->x + inc_x;
 		next_wall->y = next_wall->y - inc_y;
 	}
@@ -33,25 +25,17 @@ static double	wall_hori_ne(t_wall *next_wall, t_map *map, double ray)
 {
 	double	inc_x;
 	double	inc_y;
-	double	distance;
 
 	inc_y = 64.0;
 	inc_x = 64.0 / tan(-ray);	
 	next_wall->y = (int)map->player.pos.y * 64.0 - 0.0000001;
-	next_wall->x = (map->player.pos.x * 64.0 + (map->player.pos.y * 64.0 - next_wall->y) / tan(-ray));
+	next_wall->x = (map->player.pos.x * 64.0
+			+ (map->player.pos.y * 64.0 - next_wall->y) / tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
-		{
-			next_wall->type = WALL;
-			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
-				next_wall->type = DOOR;
-			distance = sqrt(pow((map->player.pos.x * 64.0) - (int)(next_wall->x), 2) + pow((map->player.pos.y * 64.0) - (next_wall->y), 2));
-			if (distance < 0)
-				distance = -distance;
-			return (distance);
-		}
+			return (get_distance(next_wall, map));
 		next_wall->x = next_wall->x + inc_x;
 		next_wall->y = next_wall->y - inc_y;
 	}

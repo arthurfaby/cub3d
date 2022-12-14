@@ -53,6 +53,7 @@ typedef struct s_wall
 	double	x;
 	double	y;
 	double	distance;
+	double	ray;
 	t_side	side;
 	t_face	face;
 	t_type	type;
@@ -128,8 +129,9 @@ int		check_error_element(int fd);
 //print_wall.c
 void	print_wall(t_wall next_wall, int find_wall_y, int find_wall_x, t_map *map, double ray, int i, t_window *window);
 
-//raycasting.c
+//raycast.c
 void	raycasting(t_map *map, t_window *window, t_textures *textures);
+double	get_distance(t_wall *next_wall, t_map *map);
 
 // minimap.c
 void	draw_minimap(t_window *window, t_map *map);
