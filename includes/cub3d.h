@@ -17,7 +17,7 @@
 # define PI 3.14159265358979323846
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
-# define FOV 1.0471975512
+# define FOV PI / 3
 
 typedef enum e_face
 {
