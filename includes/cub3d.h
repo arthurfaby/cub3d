@@ -13,7 +13,8 @@
 # define MMAP_FCOLOR 0xe6e603
 # define MMAP_WCOLOR 0x101040
 # define MMAP_PCOLOR 0x582900
-# define MMAP_DCOLOR 0x017000
+# define MMAP_DOCOLOR 0x017000
+# define MMAP_DCCOLOR 0x970300
 # define PI 3.14159265358979323846
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
@@ -33,6 +34,12 @@ typedef enum e_side
 	VERTICAL
 } t_side;
 
+typedef enum e_type
+{
+	WALL = 42,
+	DOOR = 43
+} t_type;
+
 # define ERROR "[\e[31mERROR\e[0m]"
 
 typedef struct s_point
@@ -48,6 +55,7 @@ typedef struct s_wall
 	double	distance;
 	t_side	side;
 	t_face	face;
+	t_type	type;
 }	t_wall;
 
 typedef struct s_image
@@ -96,6 +104,7 @@ typedef struct s_textures
 	t_texture	south;
 	t_texture	west;
 	t_texture	east;
+	t_texture	door;
 	int			floor;
 	int			ceiling;
 }	t_textures;

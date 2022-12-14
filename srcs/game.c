@@ -15,6 +15,14 @@ static int	render(t_game *game)
 	return (1);
 }
 
+static int	quit(t_game *game)
+{
+	// free all
+	(void)game;
+	exit(0);
+	return (0);
+}
+
 int	launch_game(char *argv[])
 {
 	t_game	game;
@@ -24,6 +32,7 @@ int	launch_game(char *argv[])
 	init_window(&game.window);
 	if (parse_all(argv[1], &game) == -1)
 		return (2);
+	mlx_hook(game.window.win, DestroyNotify, StructureNotifyMask, &quit, &game);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
 	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,
 		mouse_move, &game);

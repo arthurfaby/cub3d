@@ -67,8 +67,6 @@ static int	get_tile_type(t_map *map, t_point here, int tile_border)
 	if (check_in_map(map, here, tile_border))
 		return (-1);
 	res = map->board[(int)(here.y / tile_border)][(int)(here.x / tile_border)];
-	if (res == 3)
-		return (0);
 	return (res);
 }
 
@@ -99,10 +97,13 @@ void	draw_minimap(t_window *window, t_map *map)
 						(int)here.x - x_offset, MMAP_WCOLOR);
 				else if (get_tile_type(map, here, tile_border) == 2)
 					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_DCOLOR);
+						(int)here.x - x_offset, MMAP_DCCOLOR);
 				else if (get_tile_type(map, here, tile_border) == 0)
 					img_pixel_put(window, (int)here.y - y_offset,
 						(int)here.x - x_offset, MMAP_FCOLOR);
+				else if (get_tile_type(map, here, tile_border) == 3)
+					img_pixel_put(window, (int)here.y - y_offset,
+						(int)here.x - x_offset, MMAP_DOCOLOR);
 				else
 					img_pixel_put(window, (int)here.y - y_offset,
 						(int)here.x - x_offset, MMAP_WCOLOR);

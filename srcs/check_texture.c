@@ -10,6 +10,8 @@ static int	value_elements(char *str)
 		return (2);
 	if (ft_strcmp(str, "EA") == 0)
 		return (3);
+	if (ft_strcmp(str, "DO") == 0)
+		return (4);
 	return (-1);
 }
 

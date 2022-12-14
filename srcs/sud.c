@@ -15,6 +15,9 @@ double	wall_vert_se(t_wall *next_wall, t_map *map, double	ray)
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
+			next_wall->type = WALL;
+			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
+				next_wall->type = DOOR;
 			distance = sqrt(pow((map->player.pos.x * 64.0) - next_wall->x, 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
 			if (distance < 0)
 				distance = -distance;
@@ -41,6 +44,9 @@ double	wall_hori_se(t_wall *next_wall, t_map *map, double	ray)
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
+			next_wall->type = WALL;
+			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
+				next_wall->type = DOOR;
 			distance = sqrt(pow((map->player.pos.x * 64.0) - next_wall->x, 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
 			if (distance < 0)
 				distance = -distance;
@@ -72,6 +78,7 @@ double	ray_se(t_wall *next_wall, t_map *map, double ray)
 		next_wall->face = WEST;
 		next_wall->x = temp_wall.x;
 		next_wall->y = temp_wall.y;
+		next_wall->type = temp_wall.type;
 		return (distance_vert);
 	}
 	next_wall->side = HORIZONTAL;
@@ -94,6 +101,9 @@ double	wall_vert_so(t_wall *next_wall, t_map *map, double	ray)
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
+			next_wall->type = WALL;
+			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
+				next_wall->type = DOOR;
 			distance = sqrt(pow((map->player.pos.x * 64.0) - next_wall->x, 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
 			if (distance < 0)
 				distance = -distance;
@@ -120,6 +130,9 @@ double	wall_hori_so(t_wall *next_wall, t_map *map, double	ray)
 		if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 0
 			&& map->board[(int)next_wall->y/64][(int)next_wall->x/64] != 3)
 		{
+			next_wall->type = WALL;
+			if (map->board[(int)next_wall->y/64][(int)next_wall->x/64] == 2)
+				next_wall->type = DOOR;
 			distance = sqrt(pow((map->player.pos.x * 64.0) - next_wall->x, 2) + pow((map->player.pos.y * 64.0) - next_wall->y, 2));
 			if (distance < 0)
 				distance = -distance;
@@ -151,6 +164,7 @@ double	ray_so(t_wall *next_wall, t_map *map, double ray)
 		next_wall->face = EAST;
 		next_wall->x = temp_wall.x;
 		next_wall->y = temp_wall.y;
+		next_wall->type = temp_wall.type;
 		return (distance_vert);
 	}
 	next_wall->side = HORIZONTAL;

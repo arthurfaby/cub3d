@@ -39,6 +39,8 @@ static int	parse_one_elem(char **splitted, t_game *game)
 		init_texture(&game->textures.west, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "EA") == 0)
 		init_texture(&game->textures.east, game->window.mlx, splitted);
+	if (ft_strcmp(splitted[0], "DO") == 0)
+		init_texture(&game->textures.door, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "F") == 0)
 		game->textures.floor = get_rgb_color(splitted[1]);
 	if (ft_strcmp(splitted[0], "C") == 0)

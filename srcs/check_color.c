@@ -3,9 +3,9 @@
 static int	value_colors(char *str)
 {
 	if (ft_strcmp(str, "F") == 0)
-		return (4);
-	else if (ft_strcmp(str, "C") == 0)
 		return (5);
+	else if (ft_strcmp(str, "C") == 0)
+		return (6);
 	return (-1);
 }
 

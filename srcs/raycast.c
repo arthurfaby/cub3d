@@ -11,7 +11,9 @@ static int	choose_wall_color(int y, int height, t_textures *textures, t_wall *ne
 	int			col;
 	(void)col;
 
-	if (next_wall->face == EAST)
+	if (next_wall->type == DOOR)
+		txt = textures->door;
+	else if (next_wall->face == EAST)
 		txt = textures->east;
 	else if (next_wall->face == WEST)
 		txt = textures->west;
@@ -81,6 +83,8 @@ void	raycasting(t_map *map, t_window *window, t_textures *textures)
 		else if(ray > 1.5708 && ray < 3.14159)
 			next_wall.distance = ray_so(&next_wall, map, ray);
 		ray = ray + inc;
+	//	printf("i : %d -- type : %d\n", i, next_wall.type);
+	//	printf("value : %d\n", map->board[(int)next_wall.y/64][(int)next_wall.x/64]);
 		print_ray(ray - map->player.angle, &next_wall, window, i++, textures);	
 	}	
 }
