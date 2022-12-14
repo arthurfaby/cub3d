@@ -19,17 +19,11 @@ static int	choose_wall_color(int y, int height, t_textures *textures, t_wall *ne
 		txt = textures->north;
 	else
 		txt = textures->south;
-	ratio = txt.height / height;
+	ratio = (double)txt.height / (double)height;
 	if (next_wall->side == HORIZONTAL)
-	{
-		col = (next_wall->x - (int)next_wall->x) * txt.width;
-	//	printf("x : %f, %f, %d\n", next_wall->x, (next_wall->x - (int)next_wall->x), txt.width);
-	}
+		col = (next_wall->x / 64 - (int)next_wall->x / 64) * txt.width;
 	else
-	{
-		col = (next_wall->y - (int)next_wall->y) * txt.width;
-	//	printf("y : %f, %f, %d\n", next_wall->y, (next_wall->y - (int)next_wall->y), txt.width);
-	}
+		col = (next_wall->y / 64 - (int)next_wall->y / 64) * txt.width;
 	color = get_color_in_image(&txt, y * ratio, col);
 	return (color);
 }

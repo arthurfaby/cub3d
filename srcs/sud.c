@@ -73,7 +73,7 @@ double	ray_se(t_wall *next_wall, t_map *map, double ray)
 		return (distance_vert);
 	}
 	next_wall->side = HORIZONTAL;
-	next_wall->face = SOUTH;
+	next_wall->face = NORTH;
 	return (distance_hori);
 }
 
@@ -150,7 +150,7 @@ double	ray_so(t_wall *next_wall, t_map *map, double ray)
 		return (distance_vert);
 	}
 	next_wall->side = HORIZONTAL;
-	next_wall->face = SOUTH;
+	next_wall->face = NORTH;
 	return (distance_hori);
 }
 
