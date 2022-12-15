@@ -10,6 +10,8 @@ static int	value_elements(char *str)
 		return (2);
 	if (ft_strcmp(str, "EA") == 0)
 		return (3);
+	if (ft_strcmp(str, "DO") == 0)
+		return (4);
 	return (-1);
 }
 
@@ -27,7 +29,6 @@ static int	check_texture(char	*image, int width, int height, char	**element)
 		return (1);
 	}
 	return (0);
-	
 }
 
 int	check_value_texture(char **element)
@@ -45,6 +46,6 @@ int	check_value_texture(char **element)
 		return_value = -1;
 	free(image);
 	mlx_destroy_display(mlx);
-	free(mlx);	
+	free(mlx);
 	return (return_value);
 }

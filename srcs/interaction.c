@@ -1,32 +1,54 @@
 #include "cub3d.h"
 
+static int	move_x(int x, t_game *game)
+{
+	int	reset;
+
+	reset = 0;
+	if (x > RES_WIDTH / 2 + 50)
+	{
+		reset = 1;
+		change_angle(&game->map.player, PI / 128);
+	}
+	else if (x < RES_WIDTH / 2 - 50)
+	{
+		reset = 1;
+		change_angle(&game->map.player, -PI / 128);
+	}
+	return (reset);
+}
+
+static int	move_y(int y, t_game *game)
+{
+	int	reset;
+
+	reset = 0;
+	if (y > RES_HEIGHT / 2 + 20)
+	{
+		reset = 1;
+		if (game->map.player.inclination > -RES_HEIGHT / 2)
+			game->map.player.inclination -= 10;
+	}
+	else if (y < RES_HEIGHT / 2 - 20)
+	{
+		reset = 1;
+		if (game->map.player.inclination < RES_HEIGHT / 2)
+			game->map.player.inclination += 10;
+	}
+	return (reset);
+}
+
 int	mouse_move(int x, int y, t_game *game)
 {
-	static int	clock = 0;
-	int			new_x;
-	int			new_y;
+	int			reset_x;
+	int			reset_y;
 
-	if (clock < 2)
-	{
-		clock++;
-		return (1);
-	}
-	clock = 0;
-	if (x > game->map.player.last_x + 10)
-		change_angle(&game->map.player, PI / 32);
-	if (x < game->map.player.last_x - 10)
-		change_angle(&game->map.player, -PI / 32);
-	if (x < 50 || x > RES_WIDTH - 50)
+	reset_x = move_x(x, game);
+	reset_y = move_y(y, game);
+	if (reset_x)
 		mlx_mouse_move(game->window.mlx, game->window.win, RES_WIDTH / 2, y);
-	if (y < 200 || y > RES_HEIGHT - 200)
+	if (reset_y)
 		mlx_mouse_move(game->window.mlx, game->window.win, x, RES_HEIGHT / 2);
-	mlx_mouse_get_pos(game->window.mlx, game->window.win, &new_x, &new_y);
-	if (x > game->map.player.last_x + 10 || x < game->map.player. last_x - 10)
-	{
-		raycasting(&game->map, &game->window);
-		draw_minimap(&game->window, &game->map);
-		game->map.player.last_x = new_x;
-	}
 	return (0);
 }
 
@@ -47,5 +69,7 @@ void	open_door(t_map *map)
 	if (player.angle >= 5.0 * PI / 4.0 && player.angle < 7.0 * PI / 4.0)
 		pointing.y -= 1;
 	if (map->board[(int)pointing.y][(int)(pointing.x)] == 2)
-		map->board[(int)pointing.y][(int)(pointing.x)] = 0;
+		map->board[(int)pointing.y][(int)(pointing.x)] = 3;
+	else if (map->board[(int)pointing.y][(int)(pointing.x)] == 3)
+		map->board[(int)pointing.y][(int)(pointing.x)] = 2;
 }

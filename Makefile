@@ -10,6 +10,7 @@ SRCS			= \
 				srcs/check_texture.c \
 				srcs/check_color.c \
 				srcs/check_map.c \
+				srcs/check_map_utils.c \
 				srcs/minimap.c \
 				srcs/window.c \
 				srcs/game.c \
@@ -18,10 +19,10 @@ SRCS			= \
 				srcs/interaction.c \
 				srcs/utils.c \
 				srcs/raycast.c \
-				srcs/print_wall.c \
 				srcs/ray_no.c \
 				srcs/ray_ne.c \
-				srcs/sud.c \
+				srcs/ray_so.c \
+				srcs/ray_se.c \
 				\
 
 OBJS			= $(SRCS:.c=.o)

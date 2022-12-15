@@ -4,7 +4,7 @@ int	parse_all(const char *path, t_game *game)
 {
 	int	fd;
 
-	fd = open(path, O_RDONLY);	
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_print_error(ERROR" : open map failed.\n");

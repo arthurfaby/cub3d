@@ -3,16 +3,31 @@
 static int	value_colors(char *str)
 {
 	if (ft_strcmp(str, "F") == 0)
-		return (4);
-	else if (ft_strcmp(str, "C") == 0)
 		return (5);
+	else if (ft_strcmp(str, "C") == 0)
+		return (6);
 	return (-1);
+}
+
+static int	error_color(char **split_color, char **split_line, int i)
+{
+	int	simple_color;
+
+	simple_color = ft_atoi(split_color[i]);
+	if (ft_strlen(split_color[i]) > 3 || simple_color > 255
+		|| simple_color < 0)
+	{
+		ft_printf(ERROR": color (%d) out of range for [%s].\n",
+			simple_color, split_line[0]);
+		free_arr(split_color);
+		return (-1);
+	}
+	return (0);
 }
 
 int	check_value_color(char **split_line)
 {
 	char	**split_color;
-	int		simple_color;
 	int		i;
 	int		ret;
 
@@ -27,13 +42,8 @@ int	check_value_color(char **split_line)
 	}
 	while (split_color[i] != NULL)
 	{
-		simple_color = ft_atoi(split_color[i]);
-		if (ft_strlen(split_color[i]) > 3 || simple_color > 255 || simple_color < 0)
-		{
-			ft_printf(ERROR": color (%d) out of range for [%s].\n", simple_color, split_line[0]);
-			free_arr(split_color);
+		if (error_color(split_color, split_line, i) == -1)
 			return (-1);
-		}
 		i++;
 	}
 	free_arr(split_color);

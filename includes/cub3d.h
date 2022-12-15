@@ -13,7 +13,8 @@
 # define MMAP_FCOLOR 0xe6e603
 # define MMAP_WCOLOR 0x101040
 # define MMAP_PCOLOR 0x582900
-# define MMAP_DCOLOR 0x017000
+# define MMAP_DOCOLOR 0x017000
+# define MMAP_DCCOLOR 0x970300
 # define PI 3.14159265358979323846
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
@@ -26,6 +27,18 @@ typedef enum e_face
 	EAST,
 	WEST
 } t_face;
+
+typedef enum e_side
+{
+	HORIZONTAL = 12,
+	VERTICAL
+} t_side;
+
+typedef enum e_type
+{
+	WALL = 42,
+	DOOR = 43
+} t_type;
 
 # define ERROR "[\e[31mERROR\e[0m]"
 
@@ -40,7 +53,10 @@ typedef struct s_wall
 	double	x;
 	double	y;
 	double	distance;
+	double	ray;
+	t_side	side;
 	t_face	face;
+	t_type	type;
 }	t_wall;
 
 typedef struct s_image
@@ -65,7 +81,7 @@ typedef struct s_player
 {
 	t_point	pos;
 	double	angle;
-	int		last_x;
+	int		inclination;
 }	t_player;
 
 typedef struct s_map
@@ -89,6 +105,12 @@ typedef struct s_textures
 	t_texture	south;
 	t_texture	west;
 	t_texture	east;
+	t_texture	door;
+	t_texture	south_1;
+	t_texture	south_2;
+	t_texture	south_3;
+	t_texture	south_4;
+	t_texture	south_5;
 	int			floor;
 	int			ceiling;
 }	t_textures;
@@ -109,14 +131,12 @@ int		error(const char *path, t_map *map);
 //check_error_element.c
 int		check_error_element(int fd);
 
-//print_wall.c
-void	print_wall(t_wall next_wall, int find_wall_y, int find_wall_x, t_map *map, double ray, int i, t_window *window);
-
-//raycasting.c
-void	raycasting(t_map *map, t_window *window);
+//raycast.c
+void	raycasting(t_game *game);
+double	get_distance(t_wall *next_wall, t_map *map);
 
 // minimap.c
-void	draw_minimap(t_window *window, t_map *map);
+void	draw_minimap(t_game *game);
 
 // game.c
 int		launch_game(char *argv[]);
@@ -128,12 +148,18 @@ void	init_window(t_window *window);
 void	img_pixel_put(t_window *window, int y, int x, int color);
 void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 int		get_color_in_image(t_texture *texture, int x, int y);
+void	draw_player(t_window *window, t_map *map, int tile_border);
 
 // hook.c
 int		key_hook(int keycode, t_game *game);
 
 // check_color.c
 int		check_value_color(char **split_line);
+
+// check_map_utils.c
+void	replace_one(t_map *map);
+int		get_map_dimension(int fd, char **line_ptr, t_map *map);
+
 
 // check_map.c
 int		check_map(int fd, t_map *map);
