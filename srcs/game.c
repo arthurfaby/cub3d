@@ -17,7 +17,7 @@ static int	render(t_game *game)
 	else
 		i = 0;
 	i++;
-	raycasting(&game->map, &game->window, &game->textures);
+	raycasting(game);
 	draw_minimap(&game->window, &game->map);
 	return (1);
 }
@@ -39,6 +39,7 @@ int	launch_game(char *argv[])
 	init_window(&game.window);
 	if (parse_all(argv[1], &game) == -1)
 		return (2);
+	game.map.player.inclination = 0;
 	mlx_hook(game.window.win, DestroyNotify, StructureNotifyMask, &quit, &game);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
 	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,

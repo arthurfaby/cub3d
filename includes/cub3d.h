@@ -81,7 +81,7 @@ typedef struct s_player
 {
 	t_point	pos;
 	double	angle;
-	int		last_x;
+	int		inclination;
 }	t_player;
 
 typedef struct s_map
@@ -131,11 +131,8 @@ int		error(const char *path, t_map *map);
 //check_error_element.c
 int		check_error_element(int fd);
 
-//print_wall.c
-void	print_wall(t_wall next_wall, int find_wall_y, int find_wall_x, t_map *map, double ray, int i, t_window *window);
-
 //raycast.c
-void	raycasting(t_map *map, t_window *window, t_textures *textures);
+void	raycasting(t_game *game);
 double	get_distance(t_wall *next_wall, t_map *map);
 
 // minimap.c
