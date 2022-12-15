@@ -3,7 +3,7 @@
 static int	check_extension(const char *map)
 {
 	int	i;
-	
+
 	i = 0;
 	if (ft_strlen(map) < 5)
 	{
@@ -17,7 +17,7 @@ static int	check_extension(const char *map)
 		ft_print_error(ERROR" : wrong extension.\n");
 		return (1);
 	}
-	return (0);	
+	return (0);
 }
 
 static int	error_parsing_fd(int fd, t_map *map)
@@ -29,7 +29,7 @@ static int	error_parsing_fd(int fd, t_map *map)
 	return (0);
 }
 
-int error(const char *path, t_map *map)
+int	error(const char *path, t_map *map)
 {
 	int	fd;
 

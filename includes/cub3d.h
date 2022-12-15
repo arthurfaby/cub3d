@@ -136,7 +136,7 @@ void	raycasting(t_game *game);
 double	get_distance(t_wall *next_wall, t_map *map);
 
 // minimap.c
-void	draw_minimap(t_window *window, t_map *map);
+void	draw_minimap(t_game *game);
 
 // game.c
 int		launch_game(char *argv[]);
@@ -148,12 +148,18 @@ void	init_window(t_window *window);
 void	img_pixel_put(t_window *window, int y, int x, int color);
 void	draw_line(t_window *window, t_point *p1, t_point *p2, int color);
 int		get_color_in_image(t_texture *texture, int x, int y);
+void	draw_player(t_window *window, t_map *map, int tile_border);
 
 // hook.c
 int		key_hook(int keycode, t_game *game);
 
 // check_color.c
 int		check_value_color(char **split_line);
+
+// check_map_utils.c
+void	replace_one(t_map *map);
+int		get_map_dimension(int fd, char **line_ptr, t_map *map);
+
 
 // check_map.c
 int		check_map(int fd, t_map *map);

@@ -1,32 +1,7 @@
 #include "cub3d.h"
 
-static void	draw_player(t_window *window, t_map *map, int tile_border)
-{
-	t_point	center;
-	t_point	end;
-	int		i;
-	int		j;
-
-	center.x = (double)((double)MMAP_WIDTH / 2 * tile_border);
-	center.y = center.x;
-	end.x = 20 * sin(map->player.angle) + center.x;
-	end.y = 20 * cos(map->player.angle) + center.y;
-	draw_line(window, &center, &end, 0);
-	i = -3;
-	while (i < 4)
-	{
-		j = -3;
-		while (j < 4)
-		{
-			img_pixel_put(window, center.y + j, center.x + i, MMAP_PCOLOR);
-			j++;
-		}
-		i++;
-	}
-}
-
 static int	is_in_circle(t_window *window, t_point here,
-						int x_offset, int y_offset)
+	t_point offset)
 {
 	int		tile_border;
 	t_point	center;
@@ -37,8 +12,8 @@ static int	is_in_circle(t_window *window, t_point here,
 	center.x = (int)(MMAP_WIDTH * tile_border / 2);
 	center.y = (int)(MMAP_WIDTH * tile_border / 2);
 	radius = center.x - 5;
-	distance = sqrt(pow(center.x - here.x + x_offset, 2)
-			+ pow(center.y - here.y + y_offset, 2));
+	distance = sqrt(pow(center.x - here.x + offset.x, 2)
+			+ pow(center.y - here.y + offset.y, 2));
 	if (distance < radius)
 		return (1);
 	else if (distance == radius)
@@ -70,48 +45,56 @@ static int	get_tile_type(t_map *map, t_point here, int tile_border)
 	return (res);
 }
 
-void	draw_minimap(t_window *window, t_map *map)
+static void	choose_and_draw_color(t_game *game, t_point here,
+	t_point offset, int tile_border)
+{
+	int	is_in;
+
+	is_in = is_in_circle(&game->window, here, offset);
+	if (!is_in)
+		return ;
+	if (is_in == 2)
+		img_pixel_put(&game->window, (int)here.y - offset.y,
+			(int)here.x - offset.x, MMAP_WCOLOR);
+	else if (get_tile_type(&game->map, here, tile_border) == 2)
+		img_pixel_put(&game->window, (int)here.y - offset.y,
+			(int)here.x - offset.x, MMAP_DCCOLOR);
+	else if (get_tile_type(&game->map, here, tile_border) == 0)
+		img_pixel_put(&game->window, (int)here.y - offset.y,
+			(int)here.x - offset.x, MMAP_FCOLOR);
+	else if (get_tile_type(&game->map, here, tile_border) == 3)
+		img_pixel_put(&game->window, (int)here.y - offset.y,
+			(int)here.x - offset.x, MMAP_DOCOLOR);
+	else
+		img_pixel_put(&game->window, (int)here.y - offset.y,
+			(int)here.x - offset.x, MMAP_WCOLOR);
+}
+
+void	draw_minimap(t_game *game)
 {
 	t_point	here;
-	int		x_offset;
-	int		y_offset;
+	t_point	offset;
 	int		tile_border;
 
-	tile_border = window->width / MMAP_RATIO / MMAP_WIDTH;
-	here.x = (map->player.pos.x - (double)(MMAP_WIDTH / 2)) * tile_border;
-	x_offset = (int)((map->player.pos.x - (double)(MMAP_WIDTH / 2))
+	tile_border = game->window.width / MMAP_RATIO / MMAP_WIDTH;
+	here.x = (game->map.player.pos.x - (double)(MMAP_WIDTH / 2)) * tile_border;
+	offset.x = (int)((game->map.player.pos.x - (double)(MMAP_WIDTH / 2))
 			* tile_border);
-	y_offset = (int)((map->player.pos.y - (double)(MMAP_WIDTH / 2))
+	offset.y = (int)((game->map.player.pos.y - (double)(MMAP_WIDTH / 2))
 			* tile_border);
-	while (here.x < ((map->player.pos.x + (double)(MMAP_WIDTH / 2))
+	while (here.x < ((game->map.player.pos.x + (double)(MMAP_WIDTH / 2))
 		* tile_border))
 	{
-		here.y = (map->player.pos.y - (double)(MMAP_WIDTH / 2)) * tile_border;
-		while (here.y < ((map->player.pos.y + (double)(MMAP_WIDTH / 2))
+		here.y = (game->map.player.pos.y - (MMAP_WIDTH / 2.0)) * tile_border;
+		while (here.y < ((game->map.player.pos.y + (double)(MMAP_WIDTH / 2))
 			* tile_border))
 		{
-			if (is_in_circle(window, here, x_offset, y_offset))
-			{
-				if (is_in_circle(window, here, x_offset, y_offset) == 2)
-					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_WCOLOR);
-				else if (get_tile_type(map, here, tile_border) == 2)
-					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_DCCOLOR);
-				else if (get_tile_type(map, here, tile_border) == 0)
-					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_FCOLOR);
-				else if (get_tile_type(map, here, tile_border) == 3)
-					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_DOCOLOR);
-				else
-					img_pixel_put(window, (int)here.y - y_offset,
-						(int)here.x - x_offset, MMAP_WCOLOR);
-			}
+			choose_and_draw_color(game, here, offset, tile_border);
 			here.y++;
 		}
 		here.x++;
 	}
-	draw_player(window, map, tile_border);
-	mlx_put_image_to_window(window->mlx, window->win, window->image->img, 0, 0);
+	draw_player(&game->window, &game->map, tile_border);
+	mlx_put_image_to_window(game->window.mlx, game->window.win,
+		game->window.image->img, 0, 0);
 }

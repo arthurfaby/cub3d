@@ -2,7 +2,7 @@
 
 static int	render(t_game *game)
 {
-	static int i = 0;
+	static int	i = 0;
 
 	if (i < 5)
 		game->textures.south = game->textures.south_1;
@@ -18,7 +18,7 @@ static int	render(t_game *game)
 		i = 0;
 	i++;
 	raycasting(game);
-	draw_minimap(&game->window, &game->map);
+	draw_minimap(game);
 	return (1);
 }
 
@@ -39,7 +39,6 @@ int	launch_game(char *argv[])
 	init_window(&game.window);
 	if (parse_all(argv[1], &game) == -1)
 		return (2);
-	game.map.player.inclination = 0;
 	mlx_hook(game.window.win, DestroyNotify, StructureNotifyMask, &quit, &game);
 	mlx_hook(game.window.win, KeyPress, KeyPressMask, &key_hook, &game);
 	mlx_hook(game.window.win, MotionNotify, PointerMotionMask,

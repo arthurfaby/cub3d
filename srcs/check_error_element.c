@@ -47,6 +47,17 @@ static int	check_line_element(char *line)
 	return (value);
 }
 
+static int	valid_element(int check, int nb_elements, int elements[7])
+{
+	elements[check] = 1;
+	return (nb_elements + 1);
+}
+
+static char	*free_and_gnl(char *line, int fd)
+{
+	free(line);
+	return (get_next_line(fd, 1));
+}
 
 int	check_error_element(int fd)
 {
@@ -55,10 +66,10 @@ int	check_error_element(int fd)
 	char	*line;
 	int		check;
 
-	ft_memset(elements, 0, 7);	
+	ft_memset(elements, 0, 7);
 	line = get_next_line(fd, 1);
 	nb_elements = 0;
-	while (line != NULL && nb_elements != 6)
+	while (line != NULL && nb_elements != 7)
 	{
 		check = -1;
 		if (ft_strcmp(line, "\n") != 0)
@@ -66,17 +77,13 @@ int	check_error_element(int fd)
 		if (ft_strcmp(line, "\n") != 0 && (check == -1 || elements[check] == 1))
 		{
 			if (check != -1 && elements[check] == 1)
-				ft_printf(ERROR": double declaration somewhere.\n"); // put where
+				ft_printf(ERROR": double declaration somewhere.\n");
 			free(line);
 			return (1);
 		}
 		else if (ft_strcmp(line, "\n") != 0)
-		{
-			elements[check] = 1;
-			++nb_elements;
-		}
-		free(line);
-		line = get_next_line(fd, 1);
+			nb_elements = valid_element(check, nb_elements, elements);
+		line = free_and_gnl(line, fd);
 	}
 	return (0);
 }
