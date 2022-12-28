@@ -44,7 +44,7 @@ int	check_value_texture(char **element)
 	return_value = value_elements(element[0]);
 	if (check_texture(image, width, height, element) == 1)
 		return_value = -1;
-	free(image);
+	mlx_destroy_image(mlx, image);
 	mlx_destroy_display(mlx);
 	free(mlx);
 	return (return_value);

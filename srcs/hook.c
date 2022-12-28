@@ -71,7 +71,7 @@ static void	move_right(t_map *map)
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
-		exit(1);
+		quit(game);
 	if (keycode == 'a')
 		move_left(&game->map);
 	if (keycode == 'd')

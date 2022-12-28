@@ -22,7 +22,20 @@ static int	check_extension(const char *map)
 
 static int	error_parsing_fd(int fd, t_map *map)
 {
-	if (check_error_element(fd) == 1)
+	char	*line;
+
+	line = get_next_line(fd, 1);
+	while (line != NULL && ft_strcmp(line, "\n") == 0)
+	{
+		free(line);
+		line = get_next_line(fd, 1);
+	}
+	if (line == NULL)
+	{
+		ft_printf(ERROR":empty file\n");
+		return (1);
+	}
+	if (check_error_element(fd, line) == 1)
 		return (1);
 	if (check_map(fd, map))
 		return (1);
