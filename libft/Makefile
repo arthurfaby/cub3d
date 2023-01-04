@@ -6,7 +6,7 @@
 #    By: pirabaud <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 09:35:24 by pirabaud          #+#    #+#              #
-#    Updated: 2022/11/23 09:30:06 by pirabaud         ###   ########.fr        #
+#    Updated: 2023/01/04 15:02:05 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS	= ${SRCS:.c=.o}
 
 NAME	= libft.a
 
-CC	= gcc
+CC	= clang
 RM	= rm -f
 
 CFLAGS	= -Wall -Wextra -Werror

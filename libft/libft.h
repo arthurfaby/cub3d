@@ -6,7 +6,7 @@
 /*   By: pirabaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:24:58 by pirabaud          #+#    #+#             */
-/*   Updated: 2022/11/23 09:28:02 by pirabaud         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:13:33 by pirabaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int			putnbr_hex_error(unsigned int nb, char *str);
 int			ft_putnbr_base_error(int nb, int base, char *str);
 int			ft_putchar_error(char c);
 int			ft_putstr_error(char *str);
-void		free_arr(char **str);
+void		free_arr_char(char **str);
+void		free_arr_int(int **str, int size);
 int			size_arr(char **arr);
 #endif

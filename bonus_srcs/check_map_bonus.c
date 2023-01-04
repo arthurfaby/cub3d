@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:09:29 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:14:01 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:09:38 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	check_map_content(t_map *map)
 		j = -1;
 		while (++j < map->width)
 		{
-			if (map->board[i][j] == 0 && check_wall_border(map, i, j) == 0)
+			if ((map->board[i][j] == 0 || map->board[i][j] == 2)
+			&& check_wall_border(map, i, j) == 0)
 			{
 				ft_print_error(ERROR" : map is not surrounded by walls.\n");
 				return (1);

@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:10:55 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:21:03 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:55 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int	convert_tile_and_check_player(t_map *map, char c, int i, int j)
 		return (1);
 	if (c == '0')
 		return (0);
+	if (c == '2')
+		return (2);
 	if (map->player.pos.x != 0)
 		return (-42);
 	map->player.pos.x = j + 0.5;
@@ -94,6 +96,7 @@ static int	fill_board(int fd, t_map *map, int **board, char *line)
 	map->player.pos.x = 0;
 	map->player.pos.y = 0;
 	map->player.angle = 0;
+	map->player.inclination = 0;
 	while (line && ft_strcmp(line, "\n") == 0)
 	{
 		free(line);

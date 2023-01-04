@@ -6,7 +6,7 @@
 /*   By: pirabaud <pirabaud@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:04:41 by pirabaud          #+#    #+#             */
-/*   Updated: 2022/10/19 14:46:46 by blevrel          ###   ########.fr       */
+/*   Updated: 2023/01/04 15:23:11 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,8 @@ char	*get_next_line(int fd, int buffer_size)
 	}
 	dest = ft_cpy_save(save[fd]);
 	save[fd] = free_save(save[fd]);
+	if (dest[0] != '\n')
+		if (dest[ft_strlen(dest) - 1] == '\n')
+			dest[ft_strlen(dest) - 1] = 0;
 	return (dest);
 }
