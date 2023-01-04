@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_window(t_window *window)
+int	init_window(t_window *window)
 {
 	window->mlx = mlx_init();
 	window->height = RES_HEIGHT;
@@ -12,10 +12,15 @@ void	init_window(t_window *window)
 			"cub3d"
 			);
 	window->image = malloc(sizeof(t_image));
-	// check malloc
+	if (!window->image)
+	{
+		ft_print_error("malloc failed");
+		return (1);
+	}
 	window->image->img = mlx_new_image(window->mlx,
 			window->width, window->height);
 	window->image->addr = mlx_get_data_addr(window->image->img,
 			&window->image->bpp, &window->image->line_len,
 			&window->image->endian);
+	return (0);
 }

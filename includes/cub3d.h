@@ -129,7 +129,7 @@ int		check_value_texture(char **element);
 int		error(const char *path, t_map *map);
 
 //check_error_element.c
-int		check_error_element(int fd);
+int		check_error_element(int fd, char *line);
 
 //raycast.c
 void	raycasting(t_game *game);
@@ -140,9 +140,10 @@ void	draw_minimap(t_game *game);
 
 // game.c
 int		launch_game(char *argv[]);
+int		quit(t_game *game);
 
 // window.c
-void	init_window(t_window *window);
+int	init_window(t_window *window);
 
 // drawing.c
 void	img_pixel_put(t_window *window, int y, int x, int color);

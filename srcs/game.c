@@ -22,10 +22,28 @@ int	render(t_game *game)
 	return (1);
 }
 
-static int	quit(t_game *game)
+void	destroy_textures(void *mlx, t_textures textures)
 {
-	// free all
-	(void)game;
+	mlx_destroy_image(mlx, textures.north.texture);
+	mlx_destroy_image(mlx, textures.west.texture);
+	mlx_destroy_image(mlx, textures.east.texture);
+	mlx_destroy_image(mlx, textures.south_1.texture);
+	mlx_destroy_image(mlx, textures.south_2.texture);
+	mlx_destroy_image(mlx, textures.south_3.texture);
+	mlx_destroy_image(mlx, textures.south_4.texture);
+	mlx_destroy_image(mlx, textures.south_5.texture);
+	mlx_destroy_image(mlx, textures.door.texture);
+}
+
+int	quit(t_game *game)
+{
+	free_arr_int(game->map.board, game->map.height);
+	destroy_textures(game->window.mlx, game->textures);
+	mlx_destroy_image(game->window.mlx, game->window.image->img);
+	mlx_destroy_window(game->window.mlx, game->window.win);
+	mlx_destroy_display(game->window.mlx);
+	free(game->window.mlx);
+	free(game->window.image);
 	exit(0);
 	return (0);
 }
@@ -45,7 +63,6 @@ int	launch_game(char *argv[])
 		mouse_move, &game);
 	mlx_mouse_move(game.window.mlx, game.window.win,
 		RES_WIDTH / 2, RES_HEIGHT / 2);
-	mlx_mouse_hide(game.window.mlx, game.window.win);
 	mlx_loop_hook(game.window.mlx, render, &game);
 	mlx_loop(game.window.mlx);
 	return (0);

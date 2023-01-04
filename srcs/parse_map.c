@@ -14,7 +14,7 @@ static int	**malloc_board(int width, int height)
 	{
 		board[i] = malloc(sizeof(int) * width);
 		if (!board[i])
-			return (NULL); // free all before
+			return (NULL);
 		j = -1;
 		while (++j < width)
 			board[i][j] = 1;
@@ -53,25 +53,25 @@ static int	treat_lines(char *line, int fd, int **board, t_map *map)
 {
 	int	i;
 	int	j;
-	int	line_len;
 
 	i = 0;
 	while (line && ft_strcmp(line, "\n") != 0)
 	{
 		j = -1;
-		line_len = ft_strlen(line);
 		while (++j < map->width)
 		{
-			if (j > line_len - 2)
-				board[i][j] = -1;
+			if (j > (int)ft_strlen(line) - 2)
+				board[i++][j] = -1;
 			else
 			{
 				board[i][j] = convert_tile_and_check_player(map, line[j], i, j);
-				if (board[i][j] == -42)
+				if (board[i++][j] == -42)
+				{
+					free(line);
 					return (0);
+				}
 			}
 		}
-		i++;
 		free(line);
 		line = get_next_line(fd, 1);
 	}
@@ -100,21 +100,24 @@ static int	fill_board(int fd, t_map *map, int **board)
 int	parse_map(int fd, t_game *game)
 {
 	int	**board;
+	int	check;
 
+	check = 0;
 	board = malloc_board(game->map.width, game->map.height);
 	if (!board)
-		return (-1);
+		check = -1;
 	if (!fill_board(fd, &game->map, board))
 	{
 		ft_print_error(ERROR" : 2 or more players in the map.\n");
-		return (-1);
+		check = -1;
 	}
 	game->map.board = board;
-	if (check_map_content(&game->map) == 0)
+	if (check_map_content(&game->map) == 1)
+		check = -1;
+	if (check == -1)
 	{
-		ft_print_error(ERROR" : map is not surrounded by walls.\n");
-		// free everything
-		return (-1);
+		close(fd);
+		quit(game);
 	}
-	return (0);
+	return (check);
 }

@@ -1,10 +1,4 @@
 
-NO textures/wood.xpm
-SO textures/cobblestone.xpm
-WE textures/grass_block.xpm
-EA textures/bricks.xpm
-DO textures/door.xpm
-F 62,51,46
 C 117,167,242
 
 
@@ -21,4 +15,4 @@ C 117,167,242
 110000000000000001101010010001
 1100000111010101111101110000111
 11110111 1110101 101111010001
-   11    111111  11  11111111
+   11    111111  11  1111111

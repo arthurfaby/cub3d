@@ -35,22 +35,24 @@ int	check_map_content(t_map *map)
 	if (check_if_there_player(map) == -1)
 	{
 		ft_print_error(ERROR" : there is no player in the map.\n");
-		return (0);
+		return (1);
 	}
 	while (i < map->height)
 	{
-		j = 0;
-		while (j < map->width)
+		j = -1;
+		while (++j < map->width)
 		{
-			if (map->board[i][j] == 0 || map->board[i][j] == 2)
-				if (check_wall_border(map, i, j) == 0)
-					return (0);
-			j++;
+			if ((map->board[i][j] == 0 || map->board[i][j] == 2)
+			&& check_wall_border(map, i, j) == 0)
+			{
+				ft_print_error(ERROR" : map is not surrounded by walls.\n");
+				return (1);
+			}
 		}
 		i++;
 	}
 	replace_one(map);
-	return (1);
+	return (0);
 }
 
 int	check_map(int fd, t_map *map)
@@ -70,6 +72,7 @@ int	check_map(int fd, t_map *map)
 	if (line)
 	{
 		ft_print_error(ERROR" : empty line inside or after map.\n");
+		free(line);
 		return (1);
 	}
 	free(line);

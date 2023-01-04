@@ -24,6 +24,7 @@ static int	get_rgb_color(char *colors)
 	color <<= 8;
 	splitted_colors[2][ft_strlen(splitted_colors[2]) - 1] = 0;
 	color |= ft_atoi(splitted_colors[2]);
+	free_arr_char(splitted_colors);
 	return (color);
 }
 
@@ -33,8 +34,6 @@ static int	parse_one_elem(char **splitted, t_game *game)
 		return (0);
 	if (ft_strcmp(splitted[0], "NO") == 0)
 		init_texture(&game->textures.north, game->window.mlx, splitted);
-	if (ft_strcmp(splitted[0], "SO") == 0)
-		init_texture(&game->textures.south, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "WE") == 0)
 		init_texture(&game->textures.west, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "EA") == 0)
@@ -79,10 +78,11 @@ int	parse_elements(int fd, t_game *game)
 	{
 		splitted = ft_split(line, ' ');
 		nb_elem += parse_one_elem(splitted, game);
-		free_arr(splitted);
+		free_arr_char(splitted);
 		free(line);
 		line = get_next_line(fd, 1);
 	}
+	free(line);
 	init_animated_textures(game);
 	return (0);
 }
