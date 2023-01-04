@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int	render(t_game *game)
+int	render(t_game *game)
 {
 	static int	i = 0;
 
