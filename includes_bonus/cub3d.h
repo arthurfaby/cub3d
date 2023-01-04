@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:11:46 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:20:36 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:46 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_player
 {
 	t_point	pos;
 	double	angle;
+	int		inclination;
 }	t_player;
 
 typedef struct s_map
@@ -115,6 +116,12 @@ typedef struct s_textures
 	t_texture	south;
 	t_texture	west;
 	t_texture	east;
+	t_texture	door;
+	t_texture	south_1;
+	t_texture	south_2;
+	t_texture	south_3;
+	t_texture	south_4;
+	t_texture	south_5;
 	int			floor;
 	int			ceiling;
 }	t_textures;

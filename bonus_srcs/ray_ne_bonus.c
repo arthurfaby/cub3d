@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:11:02 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:19:06 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:03 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static double	wall_vert_ne(t_wall *next_wall, t_wall *wall_hori,
 			+ (map->player.pos.x * 64 - next_wall->x) * tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
-		if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 0)
+		if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 0
+			&& map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 3)
 			return (get_distance(next_wall, map));
 		next_wall->x = next_wall->x + inc_x;
 		next_wall->y = next_wall->y - inc_y;
@@ -48,7 +49,8 @@ static double	wall_hori_ne(t_wall *next_wall, t_wall wall_vert,
 			+ (map->player.pos.y * 64.0 - next_wall->y) / tan(-ray));
 	while (check_wall_in_map(map, next_wall))
 	{
-		if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 0)
+		if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 0
+			&& map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] != 3)
 			return (get_distance(next_wall, map));
 		next_wall->x = next_wall->x + inc_x;
 		next_wall->y = next_wall->y - inc_y;

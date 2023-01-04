@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   interaction.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/04 16:10:31 by afaby             #+#    #+#             */
+/*   Updated: 2023/01/04 16:10:31 by afaby            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	move_x(int x, t_game *game)
@@ -5,12 +17,12 @@ static int	move_x(int x, t_game *game)
 	int	reset;
 
 	reset = 0;
-	if (x > RES_WIDTH / 2 + 50)
+	if (x > RES_WIDTH / 2 + 20)
 	{
 		reset = 1;
 		change_angle(&game->map.player, PI / 128);
 	}
-	else if (x < RES_WIDTH / 2 - 50)
+	else if (x < RES_WIDTH / 2 - 20)
 	{
 		reset = 1;
 		change_angle(&game->map.player, -PI / 128);

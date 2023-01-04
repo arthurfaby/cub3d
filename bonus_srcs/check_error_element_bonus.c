@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:09:23 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:13:33 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:09:37 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	check_key_exists(char *key)
 	if (ft_strcmp(key, "WE") == 0)
 		return (1);
 	if (ft_strcmp(key, "EA") == 0)
+		return (1);
+	if (ft_strcmp(key, "DO") == 0)
 		return (1);
 	if (ft_strcmp(key, "F") == 0)
 		return (1);
@@ -86,10 +88,10 @@ static int	*init_check_elements(void)
 	elements = malloc(sizeof(int) * 8);
 	if (!elements)
 	{
-		ft_print_error("MALLOC FAILED\n");
+		ft_print_error("MALLOC FAILED");
 		return (NULL);
 	}
-	while (i < 7)
+	while (i < 8)
 	{
 		elements[i] = 0;
 		i++;
@@ -107,7 +109,7 @@ int	check_error_element(int fd, char **line)
 	if (!elements)
 		return (1);
 	nb_elements = 0;
-	while (*line != NULL && nb_elements != 6)
+	while (*line != NULL && nb_elements != 7)
 	{
 		check = -1;
 		if (ft_strcmp(*line, "\n") != 0)

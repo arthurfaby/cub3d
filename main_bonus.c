@@ -6,11 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:12:00 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:45:27 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:12:03 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "includes/cub3d.h"
 
 int	main(int argc, char *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:09:41 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:14:20 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:09:43 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_valid_char(char c)
 {
-	if (c == ' ' || c == '1' || c == '0' || c == 'N'
+	if (c == ' ' || c == '1' || c == '0' || c == 'N' || c == '2'
 		|| c == 'W' || c == 'E' || c == 'S' || c == '\n')
 		return (1);
 	ft_print_error(ERROR" : char [%c] is not valid in the map.\n", c);

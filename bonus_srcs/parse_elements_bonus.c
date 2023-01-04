@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:10:48 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:20:51 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:49 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,32 @@ static int	parse_one_elem(char **splitted, t_game *game)
 		init_texture(&game->textures.west, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "EA") == 0)
 		init_texture(&game->textures.east, game->window.mlx, splitted);
-	if (ft_strcmp(splitted[0], "SO") == 0)
-		init_texture(&game->textures.south, game->window.mlx, splitted);
+	if (ft_strcmp(splitted[0], "DO") == 0)
+		init_texture(&game->textures.door, game->window.mlx, splitted);
 	if (ft_strcmp(splitted[0], "F") == 0)
 		game->textures.floor = get_rgb_color(splitted[1]);
 	if (ft_strcmp(splitted[0], "C") == 0)
 		game->textures.ceiling = get_rgb_color(splitted[1]);
 	return (1);
+}
+
+static void	init_animated_textures(t_game *game)
+{
+	game->textures.south_1.texture = mlx_xpm_file_to_image(
+			game->window.mlx, "textures/cobblestone.xpm",
+			&game->textures.south_1.width, &game->textures.south_1.height);
+	game->textures.south_2.texture = mlx_xpm_file_to_image(
+			game->window.mlx, "textures/cobblestone2.xpm",
+			&game->textures.south_2.width, &game->textures.south_2.height);
+	game->textures.south_3.texture = mlx_xpm_file_to_image(
+			game->window.mlx, "textures/cobblestone3.xpm",
+			&game->textures.south_3.width, &game->textures.south_3.height);
+	game->textures.south_4.texture = mlx_xpm_file_to_image(
+			game->window.mlx, "textures/cobblestone4.xpm",
+			&game->textures.south_4.width, &game->textures.south_4.height);
+	game->textures.south_5.texture = mlx_xpm_file_to_image(
+			game->window.mlx, "textures/cobblestone5.xpm",
+			&game->textures.south_5.width, &game->textures.south_5.height);
 }
 
 char	*parse_elements(int fd, t_game *game)
@@ -65,7 +84,7 @@ char	*parse_elements(int fd, t_game *game)
 
 	nb_elem = 0;
 	line = get_next_line(fd, 1);
-	while (line && nb_elem != 6)
+	while (line && nb_elem != 7)
 	{
 		splitted = ft_split(line, ' ');
 		nb_elem += parse_one_elem(splitted, game);
@@ -73,5 +92,6 @@ char	*parse_elements(int fd, t_game *game)
 		free(line);
 		line = get_next_line(fd, 1);
 	}
+	init_animated_textures(game);
 	return (line);
 }

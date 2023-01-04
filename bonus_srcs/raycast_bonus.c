@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:11:17 by afaby             #+#    #+#             */
-/*   Updated: 2023/01/04 16:24:23 by afaby            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:17 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static int	choose_wall_color(int y, int height,
 	double		ratio;
 	int			col;
 
-	if (next_wall->face == EAST)
+	if (next_wall->type == DOOR)
+		txt = textures->door;
+	else if (next_wall->face == EAST)
 		txt = textures->east;
 	else if (next_wall->face == WEST)
 		txt = textures->west;
@@ -47,8 +49,8 @@ void	print_ray(double ray, t_wall *next_wall, int i, t_game *game)
 
 	y = 0;
 	height = (64 / (next_wall->distance * cos(ray)) * (RES_WIDTH / 2));
-	start_wall = RES_HEIGHT / 2 - height / 2;
-	end_wall = RES_HEIGHT / 2 + height / 2;
+	start_wall = RES_HEIGHT / 2 - height / 2 + game->map.player.inclination;
+	end_wall = RES_HEIGHT / 2 + height / 2 + game->map.player.inclination;
 	while (y < RES_HEIGHT)
 	{
 		if (y <= start_wall)
@@ -68,6 +70,8 @@ double	get_distance(t_wall *next_wall, t_map *map)
 	double	distance;
 
 	next_wall->type = WALL;
+	if (map->board[(int)next_wall->y / 64][(int)next_wall->x / 64] == 2)
+		next_wall->type = DOOR;
 	distance = sqrt(pow((map->player.pos.x * 64) - next_wall->x, 2)
 			+ pow((map->player.pos.y * 64) - next_wall->y, 2));
 	if (distance < 0)
@@ -99,6 +103,4 @@ void	raycasting(t_game *game)
 		ray = ray + inc;
 		print_ray(ray - game->map.player.angle, &next_wall, i++, game);
 	}	
-	mlx_put_image_to_window(game->window.mlx, game->window.win,
-		game->window.image->img, 0, 0);
 }
